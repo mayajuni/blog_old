@@ -1,0 +1,105 @@
+header {
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.navbar-default {
+    border-color: transparent;
+    background-color: transparent;
+    -webkit-transition: all .45s;
+    -moz-transition: all .45s;
+    transition: all .45s;
+}
+
+.navbar-default .navbar-brand {
+    font-weight: 800;
+    color: #fff;
+}
+
+.navbar-default .menu-btn {
+    float: right;
+    display: block;
+    z-index: 999;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid  white;
+    padding: 0 10px;
+    font-size: 25px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
+.navbar-default .menu-btn:hover,
+.navbar-default .menu-btn:focus {
+    color: #fff;
+    background-color: #404040;
+}
+
+.navbar-default.affix {
+    border-color: rgba(34,34,34,.8);
+    background-color: rgba(255,255,255,0.8);
+}
+
+.navbar-default.affix .navbar-toggle {
+    border-color: #888;
+}
+
+.navbar-default.affix .menu-btn {
+    color: #888;
+    border-color: #888;
+}
+
+.navbar-default.affix .navbar-header .navbar-brand {
+    font-size: 16px;
+    color: #404040;
+}
+
+.navbar-default.affix .navbar-header .navbar-brand:hover,
+.navbar-default.affix .navbar-header .navbar-brand:focus {
+    color: #323232;
+}
+
+aside {
+    position: fixed;
+    right: -240px;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    direction:rtl;
+    text-align: center;
+    margin: 0 auto;
+    width: 240px;
+
+    /*position: fixed;
+    width: 240px;
+    background-color: #1d212a;
+    min-height: 100%;
+    padding-top: 10px;
+    right: 0;
+    /!*margin-left: -240px !important;*!/
+    z-index: 999;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;*/
+}
+
+.show-menu {
+    -webkit-transform: translate3d(-240px,0,0);
+    transform: translate3d(-240px,0,0);
+    height: 100%;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
+        width: 100%;
+    }
+}
