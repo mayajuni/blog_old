@@ -22,14 +22,17 @@ header {
 .navbar-default .menu-btn {
     float: right;
     display: block;
-    z-index: 999;
     color: #fff;
     cursor: pointer;
+    z-index: 999;
     border: 1px solid  white;
-    padding: 0 10px;
-    font-size: 25px;
     margin: 5px;
     border-radius: 5px;
+}
+.navbar-default .menu-btn .fa{
+    font-size: 25px;
+    font-weight: 200;
+    margin: 8px 10px;
 }
 
 
@@ -65,7 +68,7 @@ header {
 
 aside {
     position: fixed;
-    right: -240px;
+    right: -300px;
     width: 100%;
     top: 0;
     height: 100%;
@@ -74,26 +77,12 @@ aside {
     direction:rtl;
     text-align: center;
     margin: 0 auto;
-    width: 240px;
-
-    /*position: fixed;
-    width: 240px;
-    background-color: #1d212a;
-    min-height: 100%;
-    padding-top: 10px;
-    right: 0;
-    /!*margin-left: -240px !important;*!/
-    z-index: 999;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
-    -ms-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;*/
+    width: 300px;
 }
 
 .show-menu {
-    -webkit-transform: translate3d(-240px,0,0);
-    transform: translate3d(-240px,0,0);
+    -webkit-transform: translate3d(-300px,0,0);
+    transform: translate3d(-300px,0,0);
     height: 100%;
     overflow: hidden;
 }

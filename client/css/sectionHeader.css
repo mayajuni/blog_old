@@ -1,11 +1,11 @@
 .intro-header {
     background-color: gray;
-    background: no-repeat center center;
+    background: no-repeat center;
     background-attachment: scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    background-size: cover;
     -o-background-size: cover;
+    background-size: cover;
     margin-bottom: 50px;
 }
 
@@ -15,7 +15,7 @@
 
 .intro-header .title-box .sub-title{
     font-weight: 300;
-    font-size: 20px;
+    font-size: 23px;
 }
 .intro-header .title-box {
     padding: 100px 0 50px;

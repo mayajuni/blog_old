@@ -10,6 +10,6 @@ angular.module('blog')
                 title: '@',
                 subTitle: '@'
             },
-            templateUrl: 'client/templates/index/sectionHeader.ng.html'
+            templateUrl: 'client/html/index/sectionHeader.tpl.ng.html'
         }
     })

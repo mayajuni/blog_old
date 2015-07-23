@@ -3,7 +3,8 @@
  */
 angular.module('blog', [
     'angular-meteor',
-    'ui.router'
+    'ui.router',
+    'utils'
 ])
     .config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
         function($urlRouterProvider, $stateProvider, $locationProvider){

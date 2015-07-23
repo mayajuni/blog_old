@@ -5,7 +5,7 @@ angular.module('blog')
     .directive('headerBox', function(){
         return {
             restrict: 'AE',
-            templateUrl: 'client/templates/index/header.ng.html',
+            templateUrl: 'client/html/index/header.tpl.ng.html',
             controller: ['$scope', function($scope){
                 $('#mainNav').affix({
                     offset: {
@@ -22,9 +22,8 @@ angular.module('blog')
                 };
 
                 $('body').click(function(e) {
-                    console.log($('#toggleMenuBtn').has(e.target).length);
                     if($('body').hasClass('show-menu')){
-                        if($('#toggleMenuBtn, #menu').has(e.target).length < 1){
+                        if($('section').has(e.target).length > 0){
                             $('body').removeClass('show-menu');
                         }
                     }

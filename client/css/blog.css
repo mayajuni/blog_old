@@ -3,6 +3,11 @@ body {
     font-size: 20px;
     color: #404040;
     background-color: #fff;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,4 +20,12 @@ hr.small {
     margin: 15px auto;
     border-width: 4px;
     border-color: white;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+a {
+    color: #323232;
 }
