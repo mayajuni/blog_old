@@ -1,0 +1,83 @@
+.menu-box-right {
+    position: fixed;
+    right: -300px;
+    width: 300px;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    text-align: left;
+    margin: 0 auto;
+    background: #2d2f33;
+    font-size: 15px;
+    z-index: 2000;
+    display: block;
+}
+
+.menu-box-right .nav {
+    padding: 0;
+}
+
+.nav > li {
+    padding-top: 5px;
+}
+
+.nav li > a{
+    color: #ededed;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav > li.active > a, .nav > li > a:hover, .nav > li > a:focus{
+    color: #2d2f33;
+    background-color: #eee;
+}
+
+.nav .sub-nav {
+    background-color: #424242;
+    padding: 0;
+}
+
+.nav .sub-nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 40px;
+}
+
+.nav .sub-nav > li.active > a,.nav .sub-nav > li > a:hover, .nav .sub-nav > li > a:focus{
+    color: #eee;
+    font-weight: 800;
+}
+
+.sidebar-header {
+    color: #6F737E;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0;
+    padding: 10px 10px 5px;
+    text-transform: uppercase;
+}
+
+.menu-box-right::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #ededed;
+    border-radius: 10px;
+}
+
+.menu-box-right::-webkit-scrollbar
+{
+    width: 5px;
+    background-color: #ededed;
+}
+
+.menu-box-right::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #424242;
+}
+
+.show-menu {
+    height: 100%;
+    overflow: hidden;
+}

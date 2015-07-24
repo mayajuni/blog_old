@@ -14,20 +14,16 @@ angular.module('blog')
                 });
 
                 $scope.toggleMenu = function(){
-                    if(angular.element('body').hasClass('show-menu')){
-                        angular.element('body').removeClass('show-menu');
+                    if($("body").hasClass('show-menu')){
+                        $("section, .container-fluid").animate({ 'right': '0px' }, 200);
+                        $("#menuBox").animate({ 'right': '-300px' }, 200);
+                        $('body').removeClass('show-menu');
                     } else {
-                        angular.element('body').addClass('show-menu');
+                        $("section, .container-fluid").animate({ 'right': '300px' }, 200);
+                        $("#menuBox").animate({ 'right': '0px' }, 200);
+                        $('body').addClass('show-menu');
                     }
                 };
-
-                $('body').click(function(e) {
-                    if($('body').hasClass('show-menu')){
-                        if($('section').has(e.target).length > 0){
-                            $('body').removeClass('show-menu');
-                        }
-                    }
-                });
             }]
         }
     });

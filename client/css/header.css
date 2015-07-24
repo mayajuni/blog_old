@@ -14,6 +14,10 @@ header {
     transition: all .45s;
 }
 
+.navbar-default .container-fluid {
+    position: relative;
+}
+
 .navbar-default .navbar-brand {
     font-weight: 800;
     color: #fff;
@@ -64,27 +68,6 @@ header {
 .navbar-default.affix .navbar-header .navbar-brand:hover,
 .navbar-default.affix .navbar-header .navbar-brand:focus {
     color: #323232;
-}
-
-aside {
-    position: fixed;
-    right: -300px;
-    width: 100%;
-    top: 0;
-    height: 100%;
-    overflow: hidden;
-    overflow-y: scroll;
-    direction:rtl;
-    text-align: center;
-    margin: 0 auto;
-    width: 300px;
-}
-
-.show-menu {
-    -webkit-transform: translate3d(-300px,0,0);
-    transform: translate3d(-300px,0,0);
-    height: 100%;
-    overflow: hidden;
 }
 
 @media (min-width: 768px) {

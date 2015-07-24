@@ -9,6 +9,7 @@ insecure
 urigo:angular
 twbs:bootstrap
 danialfarid:ng-file-upload
-angularui:angular-ui-router
 jquery
 fortawesome:fontawesome
+angular:angular-animate
+angularui:angular-ui-router

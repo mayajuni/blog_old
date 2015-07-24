@@ -2,6 +2,7 @@
  * Created by 동준 on 2015-07-22.
  */
 angular.module('blog', [
+    'ngAnimate',
     'angular-meteor',
     'ui.router',
     'utils'
@@ -14,8 +15,14 @@ angular.module('blog', [
             $stateProvider
                 .state('main', {
                     url: '/',
-                    templateUrl: 'client/html/main/main.ng.html'
+                    templateUrl: 'client/html/main/main.ng.html',
+                    controller: 'mainCtrl'
+                })
+                .state('main2', {
+                    url: '/main2',
+                    templateUrl: 'client/html/main/main.ng.html',
+                    controller: 'mainCtrl'
                 });
 
-            $urlRouterProvider.otherwise('/parties');
+            /*$urlRouterProvider.otherwise('/parties');*/
         }]);

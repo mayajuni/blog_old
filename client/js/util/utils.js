@@ -1,8 +1,8 @@
 /**
- * Created by µ¿ÁØ on 2015-07-22.
+ * Created by ë™ì¤€ on 2015-07-22.
  */
 angular.module('utils', [])
-    /* ·ÎÄÃ ½ºÅä¸®Áö ÀúÀå »èÁ¦ µîµî */
+    /* ë¡œì»¬ ìŠ¤í† ë¦¬ì§€ ì €ì¥ ì‚­ì œ ë“±ë“± */
     .factory('$localStorage', ['$window', function($window) {
         return {
             set: function(key, value) {
@@ -22,7 +22,7 @@ angular.module('utils', [])
             }
         }
     }])
-    /* ¹®ÀÚ¿­ ÄÆ ÈÄ ... ºÙÀÌ±â */
+    /* ë¬¸ìì—´ ì»· í›„ ... ë¶™ì´ê¸° */
     .filter('limitAndJjum', ['limitToFilter', function(limitToFilter){
         return function(input, limit){
             if(input){
@@ -35,17 +35,17 @@ angular.module('utils', [])
             return input;
         }
     }])
-    /* °ªÀÌ nullÀÏ¶§ ´ÙÀ½¹®ÀÚ·Î */
+    /* ê°’ì´ nullì¼ë•Œ ë‹¤ìŒë¬¸ìë¡œ */
     .filter('nullToStr', function(){
         return function(input, str){
             if(input){
                 return input;
+            }else{
+                return str;
             }
-
-            return str;
         }
     })
-    /* Ã¹¹øÂ° ±ÛÂ¥ ´ë¹®ÀÚ·Î */
+    /* ì²«ë²ˆì§¸ ê¸€ì§œ ëŒ€ë¬¸ìë¡œ */
     .filter('firstCharUpper', function() {
         return function(input){
             if(input){
