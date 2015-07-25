@@ -22,6 +22,21 @@ angular.module('blog', [
                     url: '/main2',
                     templateUrl: 'client/html/main/main.ng.html',
                     controller: 'mainCtrl'
+                })
+                .state('1', {
+                    url: '/1',
+                    templateUrl: 'client/html/main/main.ng.html',
+                    controller: 'mainCtrl'
+                })
+                .state('4', {
+                    url: '/4',
+                    templateUrl: 'client/html/main/main.ng.html',
+                    controller: 'mainCtrl'
+                })
+                .state('3', {
+                    url: '/3',
+                    templateUrl: 'client/html/main/main.ng.html',
+                    controller: 'mainCtrl'
                 });
 
             /*$urlRouterProvider.otherwise('/parties');*/

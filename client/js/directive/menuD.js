@@ -24,8 +24,13 @@ angular.module('blog')
                             ]}
                 ];
 
+                $scope.menuClose = function() {
+                    $(".collapse").collapse('hide');
+                };
+
                 $rootScope.$on('$locationChangeSuccess', function(evt) {
                     /*hideMenu();*/
+                    $scope.menuClose();
                     for(var i=0; i<$scope.menuList.length; i++){
                         if(!$scope.menuList[i].subMenuList && $location.path().indexOf($scope.menuList[i].url) > -1){
                             $scope.menuList[i].active = true;
@@ -39,6 +44,7 @@ angular.module('blog')
                                 if ($location.path().indexOf($scope.menuList[i].subMenuList[j].url) > -1) {
                                     $scope.menuList[i].active = true;
                                     $scope.menuList[i].subMenuList[j].active = true;
+                                    $("#"+$scope.menuList[i].name).collapse('show');
                                 } else {
                                     $scope.menuList[i].subMenuList[j].active = false;
                                 }
