@@ -1,8 +1,8 @@
 /**
- * Created by 동준 on 2015-07-22.
+ * Created by �룞以� on 2015-07-22.
  */
 angular.module('utils', [])
-    /* 로컬 스토리지 저장 삭제 등등 */
+    /* 로컬 스토리지 */
     .factory('$localStorage', ['$window', function($window) {
         return {
             set: function(key, value) {
@@ -22,7 +22,22 @@ angular.module('utils', [])
             }
         }
     }])
-    /* 문자열 컷 후 ... 붙이기 */
+    /* html을 제외한 나머지 문자열을 자르고 ... */
+    .filter('cutHtmlTagAndLimit', function(limitToFilter) {
+        return function(input, limit){
+            if(input){
+                var changeInput = input.replace(/(<([^>]+)>)/ig,"");
+
+                if(changeInput.length > limit){
+                    return limitToFilter(changeInput, limit-3) + '...'
+                }
+                return changeInput;
+            }
+
+            return input;
+        };
+    })
+    /* 해당 길이 만큼 짜르고 ... */
     .filter('limitAndJjum', ['limitToFilter', function(limitToFilter){
         return function(input, limit){
             if(input){
@@ -35,7 +50,7 @@ angular.module('utils', [])
             return input;
         }
     }])
-    /* 값이 null일때 다음문자로 */
+    /* 널이면 다른거 입력 */
     .filter('nullToStr', function(){
         return function(input, str){
             if(input){
@@ -45,7 +60,7 @@ angular.module('utils', [])
             }
         }
     })
-    /* 첫번째 글짜 대문자로 */
+    /* 첫번째 글짜 대문자 */
     .filter('firstCharUpper', function() {
         return function(input){
             if(input){

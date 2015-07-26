@@ -8,8 +8,8 @@ meteor-platform
 insecure
 urigo:angular
 twbs:bootstrap
-danialfarid:ng-file-upload
 jquery
 fortawesome:fontawesome
 angular:angular-animate
 angularui:angular-ui-router
+accounts-password

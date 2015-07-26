@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/client/css/blog.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/css/header.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/css/sectionHeader.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/html/index.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/html/index/header.tpl.ng.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/html/index/sectionHeader.tpl.ng.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/html/main/main.ng.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/js/controller/mainCtrl.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/js/directive/boardD.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/js/util/utils.js" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

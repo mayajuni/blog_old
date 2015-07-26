@@ -1,0 +1,30 @@
+.board-list {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.board-small-content {
+    margin: 0 0 10px 0;
+    font-weight: 300;
+}
+
+.board-meta {
+    color: gray;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0;
+}
+
+.board-list> .board-meta>a {
+    text-decoration: none;
+    color: #404040;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.board-list>.board-meta>a:hover,
+.board-list>.board-meta>a:focus {
+    color: #23527c;
+}

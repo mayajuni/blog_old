@@ -1,5 +1,5 @@
 /**
- * Created by ?™ì¤? on 2015-07-22.
+ * Created by ?ï¿½ï¿½ï¿½? on 2015-07-22.
  */
 angular.module('blog')
     .controller('mainCtrl', ['$scope', function($scope){

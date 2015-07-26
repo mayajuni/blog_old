@@ -6,7 +6,7 @@ angular.module('blog')
         return {
             restrict: 'AE',
             templateUrl: 'client/html/index/header.tpl.ng.html',
-            controller: ['$scope', function($scope){
+            controller: ['$rootScope', '$scope', '$meteor', function($rootScope, $scope, $meteor){
                 $('#mainNav').affix({
                     offset: {
                         top: 50
