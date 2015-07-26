@@ -12,10 +12,8 @@
             <p class="board-meta">Posted by <a href="/">{{list.division}}</a> on {{list.regDt | date : 'MMMM dd, yyyy'}}</p>
         </div>
         <!-- Pager -->
-        <ul class="pager">
-            <li class="next">
-                <a href="#">Older Posts →</a>
-            </li>
-        </ul>
+        <div ng-if="totalCount > 10">
+            <pagination class="pagination-lg" ng-model="currentPage" ng-change="pageChanged()" total-items="totalCount" max-size="10" items-per-page="view"></pagination>
+        </div>
     </div>
 </div>

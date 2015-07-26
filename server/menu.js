@@ -5,7 +5,7 @@
  * 메뉴를 가지고 온다.
  */
 Meteor.publish("getMenuList", function (){
-
+    return Menu.find({});
 });
 
 /**

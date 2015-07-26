@@ -7,22 +7,8 @@ angular.module('blog')
             restrict: 'AE',
             replace: true,
             templateUrl: 'client/html/index/menu.tpl.ng.html',
-            controller: ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location){
-                $scope.menuList = [
-                    {name : 'Board', icon : 'fa  fa-fw fa-cogs', url: '/main2', rank : 1},
-                    {name : 'Eoard', icon : 'fa  fa-fw fa-cogs', url: '', rank : 2,
-                        subMenuList :
-                            [
-                                {name : 'SubBoard', icon : '', url: '1', rank : 1},
-                                {name : 'SubBoard', icon : '', url: '5', rank : 1}
-                            ]},
-                    {name : 'Eoard2', icon : 'fa  fa-fw fa-cogs', url: '', rank : 2,
-                        subMenuList :
-                            [
-                                {name : 'SubBoard', icon : '', url: '3', rank : 1},
-                                {name : 'SubBoard', icon : '', url: '4', rank : 1}
-                            ]}
-                ];
+            controller: ['$scope', '$rootScope', '$location', '$meteor', function($scope, $rootScope, $location, $meteor){
+                $scope.menuList = $meteor.collection(Menu).subscribe('getMenuList');
 
                 $scope.menuClose = function() {
                     $(".collapse").collapse('hide');
@@ -30,10 +16,11 @@ angular.module('blog')
 
                 $rootScope.$on('$locationChangeSuccess', function(evt) {
                     /*hideMenu();*/
-                    $scope.menuClose();
+                    var sectionHeader = {};
                     for(var i=0; i<$scope.menuList.length; i++){
                         if(!$scope.menuList[i].subMenuList && $location.path().indexOf($scope.menuList[i].url) > -1){
                             $scope.menuList[i].active = true;
+                            sectionHeader.title = $scope.menuList[i].name;
                         }else{
                             $scope.menuList[i].active = false;
                         }
@@ -44,6 +31,11 @@ angular.module('blog')
                                 if ($location.path().indexOf($scope.menuList[i].subMenuList[j].url) > -1) {
                                     $scope.menuList[i].active = true;
                                     $scope.menuList[i].subMenuList[j].active = true;
+
+                                    /* sectionHeader setting */
+                                    sectionHeader.title = $scope.menuList[i].name;
+                                    sectionHeader.subTitle = $scope.menuList[i].subMenuList[j].name;
+
                                     $("#"+$scope.menuList[i].name).collapse('show');
                                 } else {
                                     $scope.menuList[i].subMenuList[j].active = false;
@@ -51,6 +43,8 @@ angular.module('blog')
                             }
                         }
                     }
+
+                    $scope.$emit('sectionHeaderChange', sectionHeader);
                 });
 
                 function hideMenu() {

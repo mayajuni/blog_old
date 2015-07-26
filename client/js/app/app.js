@@ -4,6 +4,7 @@
 angular.module('blog', [
     'ngAnimate',
     'angular-meteor',
+    'ui.bootstrap',
     'ui.router',
     'utils'
 ])

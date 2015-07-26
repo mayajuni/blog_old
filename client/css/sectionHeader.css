@@ -19,7 +19,7 @@
 
 .intro-header .title-box .sub-title{
     font-weight: 300;
-    font-size: 23px;
+    font-size: 40px;
 }
 .intro-header .title-box {
     padding: 100px 0 50px;
@@ -33,7 +33,7 @@
     }
 
     .intro-header .title-box {
-        padding: 150px 0;
+        padding: 130px 0;
     }
 
 }

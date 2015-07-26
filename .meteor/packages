@@ -13,3 +13,4 @@ fortawesome:fontawesome
 angular:angular-animate
 angularui:angular-ui-router
 accounts-password
+angularui:angular-ui-bootstrap

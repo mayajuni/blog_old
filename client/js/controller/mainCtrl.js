@@ -3,8 +3,8 @@
  */
 angular.module('blog')
     .controller('mainCtrl', ['$scope', function($scope){
-        $scope.sectionHeader = {
+        /*$scope.sectionHeader = {
             backImg: "main"
         };
-        $scope.$emit('sectionHeaderChange', $scope.sectionHeader);
+        $scope.$emit('sectionHeaderChange', $scope.sectionHeader);*/
     }]);
