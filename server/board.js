@@ -8,12 +8,11 @@
  * @param params : [Object] page, view, title(search 구문으로 가지고 온다), division
  */
 Meteor.publish("getBoardList", function(params) {
-    var where = params;
-    where.page = !where.page ? 1 : where.page;
-    where.view = !where.view ? 10 : where.view;
+    var where = {};
+    var page = !params.page ? 1 : params.page;
+    var view = !params.view ? 10 : params.view;
     if(params.search) {
         where.title = '/'+params.search+'/';
-        delete where.search;
     }
 
     return Board.find(where, {}, {sort : {"regDt" : -1}, skip : view * (page- 1), limit: view });
@@ -29,5 +28,5 @@ Meteor.publish("getTotalCount", function(division){
     if(division) {
         where.division = division;
     }
-    return Board.find(where).count();
+    return Board.find(where);
 });

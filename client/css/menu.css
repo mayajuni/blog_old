@@ -81,3 +81,15 @@
     height: 100%;
     overflow: hidden;
 }
+
+.menu-header {
+    color: #ededed;
+    text-align: center;
+    padding: 40px 0 20px 0px;
+    border-bottom: 1px solid #424242;
+}
+
+.menu-header img {
+    width: 75px;
+    height: 75px;
+}

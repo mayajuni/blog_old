@@ -14,7 +14,7 @@ angular.module('blog')
                     $(".collapse").collapse('hide');
                 };
 
-                $rootScope.$on('$locationChangeSuccess', function(evt) {
+                $rootScope.$on('$locationChangeSuccess', function() {
                     /*hideMenu();*/
                     var sectionHeader = {};
                     for(var i=0; i<$scope.menuList.length; i++){
