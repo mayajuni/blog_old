@@ -7,29 +7,30 @@ angular.module('blog')
             restrict: 'AE',
             scope: {
                 division: '@',
-                view: '@'
+                perPage: '@'
             },
             templateUrl: 'client/html/board/boardList.tpl.ng.html',
             controller: ['$scope', '$meteor', function($scope, $meteor){
-                $scope.view = !$scope.view ? 10 : $scope.view;
-                $scope.currentPage = 1;
+                $scope.perPage = !$scope.perPage ? 10 : $scope.perPage;
 
-                var params = {
-                    division: $scope.division,
-                    view: $scope.view
+                $scope.pageChanged = function(page) {
+                    $scope.page = page;
                 };
 
-                $scope.getBoardList = function() {
-                    params.page = $scope.currentPage;
-                    $scope.boardList = $meteor.collection(Board).subscribe('getBoardList', params);
-                    $scope.totalCount = $meteor.collection(Board).subscribe('getTotalCount', params.division);
-                };
+                $scope.boardList = $meteor.collection(function() {
+                    return Board.find({}, {sort: {regDt : -1}});
+                });
 
-                $scope.pageChanged = function() {
-                    $scope.getBoardList();
-                };
 
-                $scope.getBoardList();
+                $meteor.autorun($scope, function() {
+                    $meteor.subscribe('getBoardList', {
+                        limit: parseInt($scope.getReactively('perPage')),
+                        skip: (parseInt($scope.getReactively('page')) - 1) * parseInt($scope.getReactively('perPage')),
+                        sort: {regDt : -1}
+                    }).then(function(){
+                        $scope.totalCount = $meteor.object(Counts ,'boardTotalCount', false).count;
+                    });
+                });
             }]
         }
     });

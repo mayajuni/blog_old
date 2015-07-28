@@ -1,8 +1,15 @@
 <aside class="menu-box-right" id="menuBox">
     <div class="menu-header">
-        <div>
+        <div class="btn-group" dropdown>
             <img src="/imgs/menu/myPhoto.jpg" alt="my photo" class="img-circle my-photo"/>
-            <h5>권동준 <i class="fa fa-caret-down"></i></h5>
+            <h5 dropdown-toggle class="pointer" ng-if="$root.currentUser">권동준 <i class="fa fa-caret-down"></i></h5>
+            <h5 class="pointer" ng-if="!$root.currentUser" ng-click="openLogin()">권동준 <i class="fa fa-caret-down"></i></h5>
+            <div class="dropdown-menu profile-menu">
+                <ul>
+                    <li>menu1</li>
+                    <li>menu1</li>
+                </ul>
+            </div>
         </div>
     </div>
     <nav>

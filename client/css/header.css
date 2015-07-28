@@ -49,6 +49,7 @@ header {
 .navbar-default.affix {
     border-color: rgba(34,34,34,.8);
     background-color: rgba(255,255,255,0.8);
+    z-index: 99;
 }
 
 .navbar-default.affix .navbar-toggle {

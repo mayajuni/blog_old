@@ -13,4 +13,6 @@ fortawesome:fontawesome
 angular:angular-animate
 angularui:angular-ui-router
 accounts-password
+tmeasday:publish-counts
 angularui:angular-ui-bootstrap
+angularutils:pagination
