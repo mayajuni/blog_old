@@ -6,8 +6,10 @@
             <h5 class="pointer" ng-if="!$root.currentUser" ng-click="openLogin()">권동준 <i class="fa fa-caret-down"></i></h5>
             <div class="dropdown-menu profile-menu">
                 <ul>
-                    <li>menu1</li>
-                    <li>menu1</li>
+                    <li><a><i class="fa fa-plus-square-o"></i> Menu</a></li>
+                    <li><a><i class="fa fa-pencil"></i> Board</a></li>
+                    <li class="divider"></li>
+                    <li><a ng-click="logout();"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
             </div>
         </div>

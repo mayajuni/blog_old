@@ -15,6 +15,10 @@ angular.module('blog')
                         loginS.openLoginModal();
                     };
 
+                    $scope.logout = function() {
+                        loginS.logout();
+                    };
+
                     $scope.menuClose = function() {
                         $(".collapse").collapse('hide');
                     };
