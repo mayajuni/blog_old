@@ -1,21 +1,20 @@
 <aside class="menu-box-right" id="menuBox">
     <div class="menu-header">
-        <div class="btn-group" dropdown>
+        <div class="btn-group">
             <img src="/imgs/menu/myPhoto.jpg" alt="my photo" class="img-circle my-photo"/>
-            <h5 dropdown-toggle class="pointer" ng-if="$root.currentUser">권동준 <i class="fa fa-caret-down"></i></h5>
-            <h5 class="pointer" ng-if="!$root.currentUser" ng-click="openLogin()">권동준 <i class="fa fa-caret-down"></i></h5>
-            <div class="dropdown-menu profile-menu">
-                <ul>
-                    <li><a><i class="fa fa-plus-square-o"></i> Menu</a></li>
-                    <li><a><i class="fa fa-pencil"></i> Board</a></li>
-                    <li class="divider"></li>
-                    <li><a ng-click="logout();"><i class="fa fa-sign-out"></i> Logout</a></li>
-                </ul>
-            </div>
+            <h5 class="pointer" ng-if="$root.currentUser" data-animation="am-flip-x" bs-dropdown="adminMenu" placement="bottom" html="true">
+                권동준
+                <i class="fa fa-caret-down"></i>
+            </h5>
+            <h5 class="pointer" ng-if="!$root.currentUser" ng-click="openLogin()">
+                권동준
+                <i class="fa fa-caret-down"></i>
+            </h5>
         </div>
     </div>
     <nav>
         <h5 class="sidebar-header">Navigation</h5>
+        {{$root.currentUser}}
         <ul class="nav">
             <li ng-repeat="list in menuList" ng-class="{'active' : list.active}">
                 <a ng-if="!list.subMenuList" ng-href="{{list.url}}">{{list.name}}</a>

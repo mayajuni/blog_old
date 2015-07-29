@@ -93,38 +93,3 @@
     width: 75px;
     height: 75px;
 }
-
-#menuBox .open > .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-}
-
-#menuBox .dropdown-menu {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transition: opacity 500ms ease, visibility 500ms ease;
-    -moz-transition: opacity 500ms ease, visibility 500ms ease;
-    -o-transition: opacity 500ms ease, visibility 500ms ease;
-    transition: opacity 500ms ease, visibility 500ms ease;
-}
-
-#menuBox .profile-menu {
-    left: -40px;
-    color: black;
-}
-
-#menuBox .profile-menu ul {
-    padding: 0;
-    margin: 0;
-}
-
-#menuBox .profile-menu ul > li {
-    width: 100%;
-    padding: 0 10px;
-    cursor: pointer;
-}
-
-#menuBox .profile-menu ul > li:hover {
-    background-color: #F2F2F2;
-}

@@ -4,9 +4,9 @@
 angular.module('blog', [
     'ngAnimate',
     'angular-meteor',
-    'ui.bootstrap',
-    'ngDialog',
+    'mgcrea.ngStrap',
     'angularUtils.directives.dirPagination',
+    'ngSanitize',
     'ui.router',
     'utils'
 ])
@@ -22,15 +22,10 @@ angular.module('blog', [
                     templateUrl: 'client/html/main/main.ng.html',
                     controller: 'mainC'
                 })
-                .state('main2', {
-                    url: '/main2',
-                    templateUrl: 'client/html/main/main.ng.html',
-                    controller: 'mainC'
-                })
-                .state('1', {
-                    url: '/1',
-                    templateUrl: 'client/html/main/main.ng.html',
-                    controller: 'mainC'
+                .state('board', {
+                    url: '/board/:division',
+                    templateUrl: 'client/html/board/boardList.ng.html',
+                    controller: 'boardC'
                 })
                 .state('4', {
                     url: '/4',

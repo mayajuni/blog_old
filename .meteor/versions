@@ -2,7 +2,7 @@ accounts-base@1.2.0
 accounts-password@1.1.1
 angular:angular@1.4.2
 angular:angular-animate@1.4.2
-angularui:angular-ui-bootstrap@0.13.0
+angular:angular-sanitize@1.4.2
 angularui:angular-ui-router@0.2.15
 angularutils:pagination@0.7.0
 autoupdate@1.2.1

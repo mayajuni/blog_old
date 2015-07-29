@@ -7,7 +7,8 @@ angular.module('blog')
             restrict: 'AE',
             scope: {
                 division: '@',
-                perPage: '@'
+                perPage: '@',
+                search: '@'
             },
             templateUrl: 'client/html/board/boardList.tpl.ng.html',
             controller: ['$scope', '$meteor', function($scope, $meteor){
@@ -27,6 +28,9 @@ angular.module('blog')
                         limit: parseInt($scope.getReactively('perPage')),
                         skip: (parseInt($scope.getReactively('page')) - 1) * parseInt($scope.getReactively('perPage')),
                         sort: {regDt : -1}
+                    }, {
+                        search: $scope.getReactively('search'),
+                        division: $scope.getReactively('division')
                     }).then(function(){
                         $scope.totalCount = $meteor.object(Counts ,'boardTotalCount', false).count;
                     });
