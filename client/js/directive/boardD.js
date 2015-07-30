@@ -18,13 +18,12 @@ angular.module('blog')
                     $scope.page = page;
                 };
 
-                $scope.boardList = $meteor.collection(function() {
+                $scope.boardList = $scope.$meteorCollection(function() {
                     return Board.find({}, {sort: {regDt : -1}});
                 });
 
-
                 $meteor.autorun($scope, function() {
-                    $meteor.subscribe('getBoardList', {
+                    $scope.$meteorSubscribe('getBoardList', {
                         limit: parseInt($scope.getReactively('perPage')),
                         skip: (parseInt($scope.getReactively('page')) - 1) * parseInt($scope.getReactively('perPage')),
                         sort: {regDt : -1}

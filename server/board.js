@@ -15,7 +15,7 @@ Meteor.publish("getBoardList", function(options, params) {
         search.division = params.division
     }
 
-    Counts.publish(this, 'boardTotalCount', Board.find(search || {}), {noReady: true});
+    Counts.publish(this, 'boardTotalCount', Board.find(search), {noReady: true});
 
-    return Board.find(search || {}, options);
+    return Board.find(search, options);
 });

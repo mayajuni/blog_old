@@ -39,4 +39,8 @@ angular.module('blog', [
                 });
 
             /*$urlRouterProvider.otherwise('/parties');*/
-        }]);
+        }])
+    .run(['loginS', function(loginS) {
+        loginS.processingAutoLogin();
+    }])
+;

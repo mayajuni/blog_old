@@ -16,3 +16,5 @@ Accounts.validateNewUser(function(user) {
 Accounts.validateLoginAttempt(function() {
     return true;
 });
+
+

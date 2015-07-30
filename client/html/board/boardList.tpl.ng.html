@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="board-list" dir-paginate="list in boardList | itemsPerPage: perPage" total-items="totalCount">
+        <div class="board-list" dir-paginate="list in boardList | itemsPerPage: perPage | orderBy:regDt:false" total-items="totalCount">
             <a ng-href="{{list.url}}">
                 <h2>
                     {{list.title}}
@@ -12,9 +12,6 @@
             <p class="board-meta">Posted by <a href="/">{{list.division}}</a> on {{list.regDt | date : 'MMMM dd, yyyy'}}</p>
         </div>
         <!-- Pager -->
-        <!--<div ng-show="totalCount > 10">
-            <pagination class="pagination-lg" ng-model="page" total-items="totalCount" max-size="10" items-per-page="perPage"></pagination>
-        </div>-->
         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>
