@@ -13,16 +13,7 @@ angular.module('blog')
                     loginModel.$promise.then(loginModel.hide);
                 },
                 processingAutoLogin: function() {
-                    $meteor.call('getClientIP').then(function(data){
-                        console.log(data);
-                    });
-                    if($rootScope.loggingIn) {
-                        var key = autoLogin + $rootScope.currentUser.username;
-                        var autoLogin = $localStorage.get(key);
-                        if(!!autoLogin) {
-                            $meteor.call('serverSessionSet', key, autoLogin);
-                        }
-                    }
+
                 },
                 logout: function() {
                     $meteor.logout();

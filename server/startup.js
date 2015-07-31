@@ -15,7 +15,6 @@ Meteor.startup(function() {
             // id just came online
         },
         removed: function(id) {
-            console.log(ServerSession.get('autoLogin'));
             console.log(id.username+ ' offline');
             // id just went offline
         }

@@ -13,8 +13,28 @@ Accounts.validateNewUser(function(user) {
 /**
  * 로그인 완료후
  */
-Accounts.validateLoginAttempt(function() {
+Accounts.validateLoginAttempt(function(obj) {
+    /*var userId = obj.user.username;
+    var dd = Accounts.token.getToken(userId);
+
+    obj.user.token = dd;*/
     return true;
 });
 
+Accounts.getToken = function(userId) {
+    var token = Random.secret();
+    Meteor.users.update({username:userId}, {$set: {'services.token.loginToken': token}});
 
+    return token;
+};
+
+Accounts.registerLoginHandler("accounts-token", function(options) {
+    if (!options.token) {
+        return {error: new Meteor.Error(400, "invalid-token")};
+    }
+
+    var user = Meteor.users.findOne({ 'services.token.loginToken': options.token });
+
+
+    return user;
+});

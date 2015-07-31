@@ -11,6 +11,7 @@ angular.module('blog')
             $meteor.loginWithPassword($scope.login.id, $scope.login.pw).then(function () {
                 console.log($scope.login);
                 console.log($rootScope.currentUser);
+
                 /*$meteor.call('serverSessionSet', 'autoLogin', $rootScope.currentUser.username);*/
                 /*loginS.closeLoginModal();*/
                 $scope.showButtom = true;
@@ -21,4 +22,20 @@ angular.module('blog')
                 }
             });
         };
+
+        $scope.logout = function() {
+            loginS.logout();
+        };
+
+        $scope.tokenlogin = function() {
+            $meteor.call('getToken', 'mayajuni').then(function(data) {
+                console.log(data);
+                Accounts.loginWithToken(data, function(error, data){
+                    console.log(error);
+                });
+            });
+        }
+        $scope.join = function() {
+            $meteor.createUser({username:'mayajuni', password:'dkssud12', email:'mayajuni10@gmail.com', jwt: $scope.token});
+        }
     }]);
