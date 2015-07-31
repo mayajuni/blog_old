@@ -36,6 +36,6 @@ angular.module('blog')
             });
         }
         $scope.join = function() {
-            $meteor.createUser({username:'mayajuni', password:'dkssud12', email:'mayajuni10@gmail.com', jwt: $scope.token});
+            $meteor.createUser({username:'mayajuni', password:'dkssud12', email:'mayajuni10@gmail.com'});
         }
     }]);

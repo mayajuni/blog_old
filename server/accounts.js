@@ -21,7 +21,7 @@ Accounts.validateLoginAttempt(function(obj) {
     return true;
 });
 
-Accounts.getToken = function(userId) {
+Accounts.createToken = function(userId) {
     var token = Random.secret();
     Meteor.users.update({username:userId}, {$set: {'services.token.loginToken': token}});
 
@@ -35,6 +35,14 @@ Accounts.registerLoginHandler("accounts-token", function(options) {
 
     var user = Meteor.users.findOne({ 'services.token.loginToken': options.token });
 
+    /*var stampedToken = Accounts._generateStampedLoginToken();
+    var hashStampedToken = Accounts._hashStampedToken(stampedToken);
 
-    return user;
+    Meteor.users.update(user._id,
+        {$push: {'services.resume.loginTokens': hashStampedToken}}
+    );*/
+
+    return {
+        userId: user._id
+    };
 });

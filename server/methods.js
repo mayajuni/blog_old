@@ -5,15 +5,22 @@ Meteor.methods({
     serverSessionSet : function (key, value) {
         ServerSession.set(key, value);
     },
-    getToken : function(userId){
-        if(userId){
-            return Accounts.getToken('userId');
+    getToken : function (username){
+        if(username){
+            var user = Meteor.users.findOne({username: username});
+
+            if(!user.services.token || !user.services.token.loginToken ) {
+                return Accounts.createToken(username);
+            } else {
+                return user.services.token.loginToken;
+            }
         }else {
             throw new Meteor.Error("logged-out",
                 "The user must be logged in to post a comment.");
         }
-    }/*,
-    newMember : function() {
-        var userId = Accounts.createUser({password:'dkssud12', email:'mayajuni101@gmail.com', jwt: token})
-    }*/
+    },
+    checkToken : function(username) {
+        var user = Meteor.users.findOne({username: username});
+        return user.services.token.loginToken ? true : false;
+    }
 });
