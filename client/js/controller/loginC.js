@@ -2,18 +2,18 @@
  * Created by 동준 on 2015-07-28.
  */
 angular.module('blog')
-    .controller('loginC', ['$scope', '$meteor', 'loginS', '$rootScope', '$window', function($scope, $meteor, loginS, $rootScope, $window){
+    .controller('loginC', ['$scope', 'loginS', function($scope, loginS){
         $scope.login = {};
         $scope.showButtom = true;
-
         $scope.doLogin = function() {
             $scope.showButtom = false;
-            $meteor.loginWithPassword($scope.login.id, $scope.login.pw).then(function () {
-                console.log($scope.login);
-                console.log($rootScope.currentUser);
+            loginS.doLogin($scope.login.id, $scope.login.pw).then(function() {},
+                function(err) {
 
-                /*$meteor.call('serverSessionSet', 'autoLogin', $rootScope.currentUser.username);*/
-                /*loginS.closeLoginModal();*/
+                });
+            $meteor.loginWithPassword($scope.login.id, $scope.login.pw).then(function () {
+
+                loginS.closeLoginModal();
                 $scope.showButtom = true;
             }, function(err) {
                 $scope.showButtom = true;
@@ -28,13 +28,14 @@ angular.module('blog')
         };
 
         $scope.tokenlogin = function() {
-            $meteor.call('getToken', 'mayajuni', $window.localStorage['Meteor.loginToken']).then(function(data) {
+            $meteor.call('getToken', 'mayajuni').then(function(data) {
                 console.log(data);
                 Accounts.loginWithToken(data, function(error, data){
                     console.log(error);
                 });
             });
-        }
+        };
+
         $scope.join = function() {
             $meteor.createUser({username:'mayajuni', password:'dkssud12', email:'mayajuni10@gmail.com'});
         }

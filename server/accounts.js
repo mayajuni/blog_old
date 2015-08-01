@@ -21,6 +21,12 @@ Accounts.validateLoginAttempt(function(obj) {
     return true;
 });
 
+/**
+ * 토큰을 만들고 해당 유저에 넣는다..
+ *
+ * @param userId
+ * @returns {*}
+ */
 Accounts.createToken = function(userId) {
     var token = Random.secret();
     Meteor.users.update({username:userId}, {$set: {'services.token.loginToken': token}});
@@ -28,6 +34,12 @@ Accounts.createToken = function(userId) {
     return token;
 };
 
+/**
+ * 토큰을 이용해서 로그인한다.
+ *
+ * @param userId
+ * @returns {*}
+ */
 Accounts.registerLoginHandler("accounts-token", function(options) {
     if (!options.token) {
         return {error: new Meteor.Error(400, "invalid-token")};

@@ -2,26 +2,6 @@
  * Created by �룞以� on 2015-07-22.
  */
 angular.module('utils', [])
-    /* 로컬 스토리지 */
-    .factory('$localStorage', ['$window', function($window) {
-        return {
-            set: function(key, value) {
-                $window.localStorage[key] = value;
-            },
-            get: function(key, defaultValue) {
-                return $window.localStorage[key] || defaultValue;
-            },
-            setObject: function(key, value) {
-                $window.localStorage[key] = JSON.stringify(value);
-            },
-            getObject: function(key) {
-                return JSON.parse($window.localStorage[key] || '{}');
-            },
-            remove : function(key){
-                delete $window.localStorage[key];
-            }
-        }
-    }])
     /* html을 제외한 나머지 문자열을 자르고 ... */
     .filter('cutHtmlTagAndLimit', function(limitToFilter) {
         return function(input, limit){

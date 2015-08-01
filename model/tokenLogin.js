@@ -11,11 +11,13 @@ if(Meteor.isClient) {
         });
     };
 
-    Tracker.autorun(function(){
-        if(Meteor.userId()) {
-            console.log(111);
-        }else {
-            console.log(2222);
+    Tracker.autorun(function() {
+        if(Meteor.loggingIn()) {
+            Meteor.call('getToken', Meteor.userId(), function(error, token) {
+                if(!error){
+                    window.sessionStorage['token'] = token;
+                }
+            });
         }
-    })
+    });
 }

@@ -8,6 +8,7 @@ angular.module('blog', [
     'angularUtils.directives.dirPagination',
     'ngSanitize',
     'ui.router',
+    'storage',
     'utils'
 ])
     .config(['$urlRouterProvider', '$stateProvider', '$locationProvider', 'paginationTemplateProvider',
@@ -40,7 +41,11 @@ angular.module('blog', [
 
             /*$urlRouterProvider.otherwise('/parties');*/
         }])
-    .run(['loginS', function(loginS) {
-        loginS.processingAutoLogin();
+    .run(['loginS', '$meteor', function(loginS, $meteor) {
+        if(loginS.isLogin()) {
+            $meteor.logout().then(function(){
+                loginS.processingAutoLogin();
+            });
+        }
     }])
 ;
