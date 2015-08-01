@@ -2,7 +2,7 @@
  * Created by 동준 on 2015-07-28.
  */
 angular.module('blog')
-    .controller('loginC', ['$scope', '$meteor', 'loginS', '$rootScope', function($scope, $meteor, loginS, $rootScope){
+    .controller('loginC', ['$scope', '$meteor', 'loginS', '$rootScope', '$window', function($scope, $meteor, loginS, $rootScope, $window){
         $scope.login = {};
         $scope.showButtom = true;
 
@@ -28,7 +28,7 @@ angular.module('blog')
         };
 
         $scope.tokenlogin = function() {
-            $meteor.call('getToken', 'mayajuni').then(function(data) {
+            $meteor.call('getToken', 'mayajuni', $window.localStorage['Meteor.loginToken']).then(function(data) {
                 console.log(data);
                 Accounts.loginWithToken(data, function(error, data){
                     console.log(error);

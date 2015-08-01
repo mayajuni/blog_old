@@ -10,4 +10,12 @@ if(Meteor.isClient) {
             userCallback: callback
         });
     };
+
+    Tracker.autorun(function(){
+        if(Meteor.userId()) {
+            console.log(111);
+        }else {
+            console.log(2222);
+        }
+    })
 }

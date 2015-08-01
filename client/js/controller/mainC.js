@@ -2,7 +2,9 @@
  * Created by 동준 on 2015-07-22.
  */
 angular.module('blog')
-    .controller('mainC', ['$scope', '$meteor', function($scope, $meteor){
+    .controller('mainC', ['$scope', '$meteor', '$window', function($scope, $meteor, $window){
+        console.log($window.localStorage);
+        /*UserStatus.startMonitor*/
         /*$scope.sectionHeader = {
             backImg: "main"
         };
@@ -17,3 +19,7 @@ angular.module('blog')
 
         });*/
     }]);
+window.onbeforeunload = function () {
+    Meteor.call('getToken');
+
+}
