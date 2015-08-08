@@ -7,20 +7,13 @@ angular.module('blog')
         $scope.showButtom = true;
         $scope.doLogin = function() {
             $scope.showButtom = false;
-            loginS.doLogin($scope.login.id, $scope.login.pw).then(function() {},
-                function(err) {
-
+            loginS.doLogin($scope.login.id, $scope.login.pw, $scope.login.isAuto)
+                .then(null, function(err){
+                    $scope.showButtom = true;
+                    if(err) {
+                        $scope.login.error = err.reason;
+                    }
                 });
-            $meteor.loginWithPassword($scope.login.id, $scope.login.pw).then(function () {
-
-                loginS.closeLoginModal();
-                $scope.showButtom = true;
-            }, function(err) {
-                $scope.showButtom = true;
-                if(err) {
-                    $scope.login.error = err.reason;
-                }
-            });
         };
 
         $scope.logout = function() {

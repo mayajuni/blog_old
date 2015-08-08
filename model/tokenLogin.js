@@ -11,7 +11,7 @@ if(Meteor.isClient) {
         });
     };
 
-    Tracker.autorun(function() {
+    /*Tracker.autorun(function() {
         if(Meteor.loggingIn()) {
             Meteor.call('getToken', Meteor.userId(), function(error, token) {
                 if(!error){
@@ -19,5 +19,5 @@ if(Meteor.isClient) {
                 }
             });
         }
-    });
+    });*/
 }

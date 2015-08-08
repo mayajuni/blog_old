@@ -7,8 +7,8 @@ Meteor.methods({
     },
     getToken : function (userId){
         if(userId){
-            var user = Meteor.users.findOne({_id: userId});
-
+            var user = Meteor.users.findOne({username: userId});
+            console.log(user);
             if(!user.services.token || !user.services.token.loginToken ) {
                 return Accounts.createToken(userId);
             } else {

@@ -41,11 +41,7 @@ angular.module('blog', [
 
             /*$urlRouterProvider.otherwise('/parties');*/
         }])
-    .run(['loginS', '$meteor', function(loginS, $meteor) {
-        if(loginS.isLogin()) {
-            $meteor.logout().then(function(){
-                loginS.processingAutoLogin();
-            });
-        }
+    .run(['loginS', function(loginS) {
+        loginS.processingAutoLogin();
     }])
 ;

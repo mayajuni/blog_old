@@ -2,27 +2,45 @@
  * Created by 동준 on 2015-07-28.
  */
 angular.module('blog')
-    .factory('loginS', ['$modal', '$meteor', '$rootScope', '$state', '$localStorage', '$sessionStorage',
-        function($modal, $meteor, $rootScope, $state, $localStorage, $sessionStorage) {
+    .factory('loginS', ['$modal', '$meteor', '$rootScope', '$state', '$localStorage', '$sessionStorage', '$q',
+        function($modal, $meteor, $rootScope, $state, $localStorage, $sessionStorage, $q) {
             var loginModel = $modal({templateUrl: 'client/html/account/login.tpl.ng.html', show: false, controller: 'loginC'});
-            return {
+            var service = {
                 openLoginModal: function() {
                     loginModel.$promise.then(loginModel.show);
                 },
-                closeLoginModal: function() {
-                    loginModel.$promise.then(loginModel.hide);
-                },
                 processingAutoLogin: function() {
-                    console.log('local = ' + $localStorage.get('token'));
-                    console.log('session = ' + $sessionStorage.get('token'));
-                    var token = $localStorage.get('token') || $sessionStorage.get('token') || false;
-                    console.log(token);
-                    if(!!token) {
-                        Accounts.loginWithToken(token);
-                        if(!$sessionStorage.get('token')) {
-                            $sessionStorage.set('token', token);
+                    $meteor.logout().then(function(){
+                        var token = $localStorage.get('token') || $sessionStorage.get('token') || false;
+
+                        if(!!token) {
+                            Accounts.loginWithToken(token);
+                            if(!$sessionStorage.get('token')) {
+                                $sessionStorage.set('token', token);
+                            }
                         }
-                    }
+                    });
+                },
+                doLogin : function(id, pw, isAuto) {
+                    var deferred  = $q.defer();
+
+                    $meteor.loginWithPassword(id, pw).then(
+                        function () {
+                            $meteor.call('getToken', id).then(function(token) {
+                                if(isAuto) {
+                                    $localStorage.set('token', token);
+                                }
+                                console.log(token);
+                                $sessionStorage.set('token', token);
+                            });
+
+                            loginModel.$promise.then(loginModel.hide);
+                        },
+                        function(err){
+                            deferred.reject(err);
+                        });
+
+                    return deferred.promise;
                 },
                 logout: function() {
                     $sessionStorage.clear();
@@ -32,5 +50,7 @@ angular.module('blog')
                 isLogin: function() {
                     return $rootScope.loggingIn;
                 }
-            }
+            };
+
+            return service;
         }]);
