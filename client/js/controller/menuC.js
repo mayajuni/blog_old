@@ -4,7 +4,19 @@
 angular.module('blog')
     .controller('menuC', ['$scope', '$rootScope', '$location', '$meteor', 'loginS', '$modal',
         function($scope, $rootScope, $location, $meteor, loginS, $modal){
-            $scope.menuList = $meteor.collection(Menu).subscribe('getMenuList');
+            /*$scope.menuList = $scope.$meteorCollection(function() {
+                return Menu.find({}, {sort: {rank : -1}});
+            });
+
+            $meteor.autorun($scope, function() {
+             $scope.$meteorSubscribe('getMenuList');
+             });*/
+            $scope.$meteorSubscribe('getMenuList').then(function() {
+                $scope.menuList = $scope.$meteorCollection(function() {
+                    return Menu.find({}, {sort: {rank : -1}});
+                });
+            });
+
             $scope.adminMenu = [
                 {
                     "text": "<i class=\"fa fa-bars\"></i> Menu",
@@ -93,6 +105,10 @@ angular.module('blog')
         }])
     .controller('editMenuC', ['$scope', '$rootScope', '$meteor',
         function($scope, $rootScope, $meteor){
-
+            $scope.$meteorSubscribe('getMenuList').then(function() {
+                $scope.menuList = $scope.$meteorCollection(function() {
+                    return Menu.find({}, {sort: {rank : -1}});
+                });
+            });
         }])
 ;

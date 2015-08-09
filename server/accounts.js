@@ -52,6 +52,11 @@ Accounts.registerLoginHandler("accounts-token", function(options) {
     };
 });
 
+/**
+ *
+ *
+ * @constructor
+ */
 LoginCheck = function() {
     if(!Meteor.loggingIn()) {
         throw new Meteor.Error(401, errorM.needLogin);
