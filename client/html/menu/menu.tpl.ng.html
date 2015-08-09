@@ -8,13 +8,11 @@
             </h5>
             <h5 class="pointer" ng-if="!$root.currentUser" ng-click="openLogin()">
                 권동준
-                <i class="fa fa-caret-down"></i>
             </h5>
         </div>
     </div>
     <nav>
         <h5 class="sidebar-header">Navigation</h5>
-        {{$root.currentUser}}
         <ul class="nav">
             <li ng-repeat="list in menuList" ng-class="{'active' : list.active}">
                 <a ng-if="!list.subMenuList" ng-href="{{list.url}}">{{list.name}}</a>

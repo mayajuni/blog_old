@@ -47,14 +47,36 @@ Accounts.registerLoginHandler("accounts-token", function(options) {
 
     var user = Meteor.users.findOne({ 'services.token.loginToken': options.token });
 
-    /*var stampedToken = Accounts._generateStampedLoginToken();
-    var hashStampedToken = Accounts._hashStampedToken(stampedToken);
-
-    Meteor.users.update(user._id,
-        {$push: {'services.resume.loginTokens': hashStampedToken}}
-    );*/
-
     return {
         userId: user._id
     };
+});
+
+LoginCheck = function() {
+    if(!Meteor.loggingIn()) {
+        throw new Meteor.Error(401, errorM.needLogin);
+    }
+};
+
+Meteor.methods({
+    /**
+     * 토큰을 리턴한다
+     *
+     * @param userId : [String] 유저 아이디
+     * @returns {*} : [String] 토큰
+     */
+    getToken : function (userId){
+        if(userId){
+            var user = Meteor.users.findOne({username: userId});
+
+            if(!user.services.token || !user.services.token.loginToken ) {
+                return Accounts.createToken(userId);
+            } else {
+                return user.services.token.loginToken;
+            }
+        }else {
+            throw new Meteor.Error("logged-out",
+                "The user must be logged in to post a comment.");
+        }
+    }
 });

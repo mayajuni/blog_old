@@ -10,14 +10,4 @@ if(Meteor.isClient) {
             userCallback: callback
         });
     };
-
-    /*Tracker.autorun(function() {
-        if(Meteor.loggingIn()) {
-            Meteor.call('getToken', Meteor.userId(), function(error, token) {
-                if(!error){
-                    window.sessionStorage['token'] = token;
-                }
-            });
-        }
-    });*/
 }

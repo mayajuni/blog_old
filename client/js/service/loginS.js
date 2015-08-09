@@ -2,8 +2,8 @@
  * Created by 동준 on 2015-07-28.
  */
 angular.module('blog')
-    .factory('loginS', ['$modal', '$meteor', '$rootScope', '$state', '$localStorage', '$sessionStorage', '$q',
-        function($modal, $meteor, $rootScope, $state, $localStorage, $sessionStorage, $q) {
+    .factory('loginS', ['$modal', '$meteor', '$rootScope', '$localStorage', '$sessionStorage', '$q',
+        function($modal, $meteor, $rootScope, $localStorage, $sessionStorage, $q) {
             var loginModel = $modal({templateUrl: 'client/html/account/login.tpl.ng.html', show: false, controller: 'loginC'});
             var service = {
                 openLoginModal: function() {
@@ -30,7 +30,7 @@ angular.module('blog')
                                 if(isAuto) {
                                     $localStorage.set('token', token);
                                 }
-                                console.log(token);
+
                                 $sessionStorage.set('token', token);
                             });
 

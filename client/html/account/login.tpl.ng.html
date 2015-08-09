@@ -18,15 +18,12 @@
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="isAuto"> Auto Login
+                            <input type="checkbox" ng-model="login.isAuto"> Auto Login
                         </label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-default btn-lg btn-block" ng-click="doLogin()" ng-disabled="!!myForm.$error.required || !showButtom">Login</button>
-                    <button type="submit" class="btn btn-default btn-lg btn-block" ng-click="logout()" >ddd</button>
-                    <button type="submit" class="btn btn-default btn-lg btn-block" ng-click="tokenlogin()" >aaa</button>
-                    <button type="submit" class="btn btn-default btn-lg btn-block" ng-click="join()" >join</button>
                 </div>
             </form>
         </div>

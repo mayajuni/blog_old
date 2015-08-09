@@ -23,23 +23,29 @@ angular.module('blog', [
                     templateUrl: 'client/html/main/main.ng.html',
                     controller: 'mainC'
                 })
+                .state('about', {
+                    url: '/about',
+                    templateUrl: 'client/html/main/main.ng.html',
+                    controller: 'mainC'
+                })
                 .state('board', {
                     url: '/board/:division',
                     templateUrl: 'client/html/board/boardList.ng.html',
                     controller: 'boardC'
                 })
-                .state('4', {
-                    url: '/4',
-                    templateUrl: 'client/html/main/main.ng.html',
-                    controller: 'mainC'
+                .state('boardDetail', {
+                    url: '/board/:division/:seq',
+                    templateUrl: 'client/html/board/boardDetail.ng.html',
+                    controller: 'boardDetailC'
                 })
-                .state('3', {
-                    url: '/3',
-                    templateUrl: 'client/html/main/main.ng.html',
-                    controller: 'mainC'
-                });
+                .state('boardEdit', {
+                    url: '/boardEdit/:seq',
+                    templateUrl: 'client/html/board/boardEdit.ng.html',
+                    controller: 'boardEditC'
+                })
+            ;
 
-            /*$urlRouterProvider.otherwise('/parties');*/
+            $urlRouterProvider.otherwise('/main');
         }])
     .run(['loginS', function(loginS) {
         loginS.processingAutoLogin();

@@ -3,7 +3,7 @@
  */
 
 /**
- * 게시판을 가지고 온다
+ * 게시판 리스트 가지고 온다
  *
  */
 Meteor.publish("getBoardList", function(options, params) {
@@ -18,4 +18,42 @@ Meteor.publish("getBoardList", function(options, params) {
     Counts.publish(this, 'boardTotalCount', Board.find(search), {noReady: true});
 
     return Board.find(search, options);
+});
+
+/**
+ * 게시판 상세 가지고 온다
+ *
+ */
+Meteor.publish("getBoardDetail", function(seq) {
+    return Board.find({_id: seq});
+});
+
+/**
+ * 게시판 저장
+ *
+ */
+Meteor.publish("saveBoard", function(param) {
+    LoginCheck();
+
+    return Board.insert(param);
+});
+
+/**
+ * 게시판 수정
+ *
+ */
+Meteor.publish("updateBoard", function(seq) {
+    LoginCheck();
+
+    return Board.update({_id: seq});
+});
+
+/**
+ * 게시판 삭제
+ *
+ */
+Meteor.publish("removeBoard", function(seq) {
+    LoginCheck();
+
+    return Board.remove({_id: seq});
 });

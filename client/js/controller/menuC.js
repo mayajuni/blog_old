@@ -7,7 +7,7 @@ angular.module('blog')
             $scope.menuList = $meteor.collection(Menu).subscribe('getMenuList');
             $scope.adminMenu = [
                 {
-                    "text": "<i class=\"fa fa-plus-square-o\"></i> Menu",
+                    "text": "<i class=\"fa fa-bars\"></i> Menu",
                     "click": "openEditMenu()"
                 },
                 {
