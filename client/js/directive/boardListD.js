@@ -19,8 +19,8 @@ angular.module('blog')
                 };
 
                 $scope.boardList = $scope.$meteorCollection(function() {
-                    return Board.find({}, {sort: {regDt : -1}});
-                });
+                    return Board.find({}, {}, {sort: {regDt : -1}});
+                }, false);
 
                 $meteor.autorun($scope, function() {
                     $scope.$meteorSubscribe('getBoardList', {

@@ -28,3 +28,4 @@ AutoSeqs = new Meteor.Collection("autoSeqs");
  * @type {Meteor.Collection}
  */
 Menu = new Meteor.Collection("menus");
+

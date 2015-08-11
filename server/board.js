@@ -33,7 +33,7 @@ Meteor.publish("getBoardDetail", function(seq) {
  *
  */
 Meteor.publish("saveBoard", function(param) {
-    LoginCheck();
+    LoginCheck(this.userId);
 
     return Board.insert(param);
 });
@@ -43,7 +43,7 @@ Meteor.publish("saveBoard", function(param) {
  *
  */
 Meteor.publish("updateBoard", function(seq) {
-    LoginCheck();
+    LoginCheck(this.userId);
 
     return Board.update({_id: seq});
 });
@@ -53,7 +53,7 @@ Meteor.publish("updateBoard", function(seq) {
  *
  */
 Meteor.publish("removeBoard", function(seq) {
-    LoginCheck();
+    LoginCheck(this.userId);
 
     return Board.remove({_id: seq});
 });

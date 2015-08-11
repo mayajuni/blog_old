@@ -1,7 +1,7 @@
 body {
     /*font-family: Lora,'Times New Roman',serif;*/
     font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
-    font-size: 20px;
+    /*font-size: 20px;*/
     color: #404040;
     background-color: #fff;
     position: relative;
@@ -74,4 +74,9 @@ li {
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
     background-color: #404040;
     border-color: #404040;
+}
+
+.error-box {
+    color: red;
+    font-weight: bolder;
 }

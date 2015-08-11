@@ -5,8 +5,6 @@
  * 회원가입 체크
  */
 Accounts.validateNewUser(function(user) {
-    console.log(user);
-
     return true;
 });
 
@@ -14,10 +12,12 @@ Accounts.validateNewUser(function(user) {
  * 로그인 완료후
  */
 Accounts.validateLoginAttempt(function(obj) {
+
     /*var userId = obj.user.username;
     var dd = Accounts.token.getToken(userId);
 
     obj.user.token = dd;*/
+
     return true;
 });
 
@@ -57,8 +57,8 @@ Accounts.registerLoginHandler("accounts-token", function(options) {
  *
  * @constructor
  */
-LoginCheck = function() {
-    if(!Meteor.loggingIn()) {
+LoginCheck = function(userId) {
+    if(!userId) {
         throw new Meteor.Error(401, errorM.needLogin);
     }
 };
@@ -70,18 +70,15 @@ Meteor.methods({
      * @param userId : [String] 유저 아이디
      * @returns {*} : [String] 토큰
      */
-    getToken : function (userId){
-        if(userId){
-            var user = Meteor.users.findOne({username: userId});
+    getToken : function (){
+        LoginCheck(this.userId);
 
-            if(!user.services.token || !user.services.token.loginToken ) {
-                return Accounts.createToken(userId);
-            } else {
-                return user.services.token.loginToken;
-            }
-        }else {
-            throw new Meteor.Error("logged-out",
-                "The user must be logged in to post a comment.");
+        var user = Meteor.users.findOne({_id: this.userId});
+
+        if(!user.services.token || !user.services.token.loginToken ) {
+            return Accounts.createToken(this.userId);
+        } else {
+            return user.services.token.loginToken;
         }
     }
 });

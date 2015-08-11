@@ -26,7 +26,7 @@ angular.module('blog')
 
                     $meteor.loginWithPassword(id, pw).then(
                         function () {
-                            $meteor.call('getToken', id).then(function(token) {
+                            $meteor.call('getToken').then(function(token) {
                                 if(isAuto) {
                                     $localStorage.set('token', token);
                                 }
