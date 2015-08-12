@@ -4,12 +4,12 @@
 angular.module('blog')
     .controller('loginC', ['$scope', 'loginS', '$meteor', function($scope, loginS, $meteor){
         $scope.login = {};
-        $scope.showButtom = true;
+
         $scope.doLogin = function() {
-            $scope.showButtom = false;
+            $scope.disabledButtom = true;
             loginS.doLogin($scope.login.id, $scope.login.pw, $scope.login.isAuto)
                 .then(null, function(err){
-                    $scope.showButtom = true;
+                    $scope.disabledButtom = true;
                     if(err) {
                         $scope.login.error = err.reason;
                     }

@@ -31,7 +31,7 @@ angular.module('blog', [
                 .state('board', {
                     url: '/board/:division',
                     templateUrl: 'client/html/board/boardList.ng.html',
-                    controller: 'boardC'
+                    controller: 'boardListC'
                 })
                 .state('boardDetail', {
                     url: '/board/:division/:seq',

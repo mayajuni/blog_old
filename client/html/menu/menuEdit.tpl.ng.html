@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="radio-inline">
-                            <input type="radio" name="division" value="new" ng-model="division"> New
+                            <input type="radio" name="division" value="create" ng-model="division"> create
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="division" value="update" ng-model="division"> Update
@@ -27,7 +27,7 @@
                                 <div class="col-sm-5">
                                     <select class="form-control" id="selectMenuStep1" ng-change="changeStep1()"
                                             ng-model="select.step1" ng-options="list.name for list in menuList">
-                                        <option value="">== {{division == 'new' ? 'new' : 'select' | firstCharUpper}} ==</option>
+                                        <option value="">== {{division == 'create' ? 'new' : 'select' | firstCharUpper}} ==</option>
                                     </select>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                                 <div class="col-sm-5">
                                     <select class="form-control" id="selectMenuStep2" ng-change="changeStep2()"
                                             ng-model="select.step2" ng-options="list.name for list in step2List">
-                                        <option value="">== {{division == 'new' ? 'new' : 'select' | firstCharUpper}} ==</option>
+                                        <option value="">== {{division == 'create' ? 'create' : 'select' | firstCharUpper}} ==</option>
                                     </select>
                                 </div>
                             </div>
@@ -46,10 +46,10 @@
                         <hr>
                         <h4>
                             {{!!select.step2 ? 'Step2' : 'Step1'}} {{division | firstCharUpper}}
-                            <span ng-if="!!select.step1 && division != 'new'">
+                            <span ng-if="!!select.step1 && division != 'create'">
                                 ({{!!select.step2 ? select.step2.name : select.step1.name}})
                             </span>
-                            <span ng-if="!select.step1 && division != 'new'">
+                            <span ng-if="!select.step1 && division != 'create'">
                                 (Select Step1)
                             </span>
                         </h4>
@@ -78,13 +78,9 @@
                     </div>
                 </div>
                 <div class="modal-footer" ng-if="!!division">
-                    <button class="btn btn-default btn-lg btn-block" ng-click="submit()" ng-if="division != 'delete'"
-                            ng-disabled="!!myForm.$error.required || !showButtom || nameError">
+                    <button class="btn btn-default btn-lg btn-block" ng-click="submit()"
+                            ng-disabled="!!myForm.$error.required || disabledButtom || nameError">
                         Submit
-                    </button>
-                    <button class="btn btn-default btn-lg btn-block" ng-click="remove()" ng-if="division == 'delete'"
-                            ng-disabled="!select.step1 || !showButtom">
-                        Remove
                     </button>
                 </div>
             </form>
