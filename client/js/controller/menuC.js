@@ -2,24 +2,10 @@
  * Created by 동준 on 2015-07-29.
  */
 angular.module('blog')
-    .controller('menuC', ['$scope', '$rootScope', '$location', '$meteor', 'loginS', '$modal',
-        function($scope, $rootScope, $location, $meteor, loginS, $modal){
-            /* 메뉴리스트 가져오기 */
-            $scope.$meteorSubscribe('getMenuList').then(function() {
-                $scope.menuList = $scope.$meteorCollection(function() {
-                    return Menu.find({}, {}, {sort: {rank : -1}});
-                }, false);
-                /* 현재 메뉴 active */
-                activeMenu();
-            });
-
+    .controller('menuC', ['$scope', '$rootScope', 'loginS', '$modal', 'menuS',
+        function($scope, $rootScope, loginS, $modal, menuS){
             /* 관리자 메뉴 설정 */
-            $scope.adminMenu = [
-                { "text": "<i class=\"fa fa-bars\"></i> Menu", "click": "openEditMenu()" },
-                { "text": "<i class=\"fa fa-pencil\"></i> Board</a>", "click": "openEditMenu()" },
-                { "divider": true },
-                { "text": "<i class=\"fa fa-sign-out\"></i> Logout", "click": "logout()" }
-            ];
+            $scope.adminMenu = menuS.adminMenus;
 
             /* 로그인창 오픈 */
             $scope.openLogin = function() {
@@ -41,67 +27,17 @@ angular.module('blog')
                 $(".collapse").collapse('hide');
             };
 
-            /* 메뉴가 변경 될때마다 이벤트 일어난다. */
-            $rootScope.$on('$locationChangeSuccess', function() {
-                /* 현재 메뉴 active */
-                activeMenu();
-            });
+            /* 메뉴가 변경될때 이벤트 */
+            menuS.changeMenuEvent($scope);
 
-            /* 현재 메뉴 active 하기 */
-            function activeMenu() {
-                var sectionHeader = {};
-                if(!!$scope.menuList) {
-                    for(var i=0; i<$scope.menuList.length; i++){
-                        if(!$scope.menuList[i].subMenuList && $location.path().indexOf($scope.menuList[i].url) > -1){
-                            $scope.menuList[i].active = true;
-                            sectionHeader.title = $scope.menuList[i].name;
-                        }else{
-                            $scope.menuList[i].active = false;
-                        }
-
-                        if(!!$scope.menuList[i].subMenuList) {
-                            for (var j = 0; j < $scope.menuList[i].subMenuList.length; j++) {
-                                $scope.menuList[i].subActive = false;
-                                if ($location.path().indexOf($scope.menuList[i].subMenuList[j].url) > -1) {
-                                    $scope.menuList[i].active = true;
-                                    $scope.menuList[i].subMenuList[j].active = true;
-
-                                    /* sectionHeader setting */
-                                    sectionHeader.title = $scope.menuList[i].name;
-                                    sectionHeader.subTitle = $scope.menuList[i].subMenuList[j].name;
-
-                                    $("#"+$scope.menuList[i].name).collapse('show');
-                                } else {
-                                    $scope.menuList[i].subMenuList[j].active = false;
-                                }
-                            }
-                        }
-                    }
-
-                    $scope.$emit('sectionHeaderChange', sectionHeader);
-                }
-            }
-
-            /* 사이트 메뉴박스 닫기 */
-            function hideSideMenu() {
-                $("section, .container-fluid").animate({ 'right': '0px' }, 200);
-                $("#menuBox").animate({ 'right': '-300px' }, 200);
-                $('body').removeClass('show-menu');
-            }
-
-            /* body 클릭 이벤트 */
-            $('body').click(function(e) {
-                /* 메뉴가 보일때 */
-                if($('body').hasClass('show-menu')){
-                    /* section과 header를 클릭하면 닫아라 */
-                    if($('section').has(e.target).length > 0 || ($('header').has(e.target).length > 0 && $('#toggleMenuBtn').has(e.target).length < 1)){
-                        hideSideMenu();
-                    }
-                }
-            });
+            /* 메뉴 가지고 오기 */
+            menuS.getMenu($scope).then(function(menuList) {
+                $scope.menuList = menuList;
+                menuS.activeMenu($scope);
+            })
         }])
-    .controller('editMenuC', ['$scope', '$rootScope', '$meteor',
-        function($scope, $rootScope, $meteor){
+    .controller('editMenuC', ['$scope', '$rootScope', '$meteor', 'menuS',
+        function($scope, $rootScope, $meteor, menuS){
             $scope.menu = {};
             $scope.select = {};
 
@@ -185,6 +121,7 @@ angular.module('blog')
                 }
             };
 
+            /* 메뉴 셋팅 */
             function setMenu(obj) {
                 $scope.menu = {};
                 $scope.menu.name = obj.name;
@@ -196,25 +133,27 @@ angular.module('blog')
                 }
             }
 
+            /* 에러 통합 */
             function error(err) {
-                console.log(err);
                 Session.set('errorMessage', err);
                 $scope.disabledButtom = false;
             }
 
+            /* reset */
             function reset() {
                 $scope.menu = {};
                 $scope.select = {};
                 $scope.disabledButtom = false;
             }
+
+            /* division 변경이 있을시 */
             $scope.$watch('division', function(){
                 reset();
             });
 
-            $scope.$meteorSubscribe('getMenuList').then(function() {
-                $scope.menuList = $scope.$meteorCollection(function() {
-                    return Menu.find({}, {}, {sort: {rank : -1}});
-                }, false);
-            });
+            /* 메뉴 가져오기 */
+            menuS.getMenu($scope).then(function(menuList) {
+                $scope.menuList = menuList;
+            })
         }])
 ;
