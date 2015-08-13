@@ -80,3 +80,7 @@ li {
     color: red;
     font-weight: bolder;
 }
+
+.text-center {
+    text-align: center;
+}

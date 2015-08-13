@@ -23,6 +23,10 @@ header {
     color: #fff;
 }
 
+.navbar-custom .navbar-brand:hover, .navbar-custom .navbar-brand:focus {
+    color: rgba(255,255,255,.8);
+}
+
 .navbar-default .menu-btn {
     float: right;
     display: block;

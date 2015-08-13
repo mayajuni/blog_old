@@ -88,7 +88,7 @@ angular.module('blog')
                 /* 관리자 메뉴 */
                 adminMenus: [
                     { "text": "<i class=\"fa fa-bars\"></i> Menu", "click": "openEditMenu()" },
-                    { "text": "<i class=\"fa fa-pencil\"></i> Board</a>", "click": "openEditMenu()" },
+                    { "text": "<i class=\"fa fa-pencil\"></i> Board</a>", "click": "openCreateBoard()" },
                     { "divider": true },
                     { "text": "<i class=\"fa fa-sign-out\"></i> Logout", "click": "logout()" }
                 ]

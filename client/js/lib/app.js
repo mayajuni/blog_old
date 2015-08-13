@@ -9,6 +9,7 @@ angular.module('blog', [
     'ngSanitize',
     'ui.router',
     'storage',
+    'ngFileUpload',
     'utils'
 ])
     .config(['$urlRouterProvider', '$stateProvider', '$locationProvider', 'paginationTemplateProvider',
@@ -38,14 +39,9 @@ angular.module('blog', [
                     templateUrl: 'client/html/board/boardDetail.ng.html',
                     controller: 'boardDetailC'
                 })
-                .state('boardEdit', {
-                    url: '/boardEdit/:seq',
-                    templateUrl: 'client/html/board/boardEdit.ng.html',
-                    controller: 'boardEditC'
-                })
             ;
 
-            $urlRouterProvider.otherwise('/main');
+            $urlRouterProvider.otherwise('/');
         }])
     .run(['loginS', function(loginS) {
         loginS.processingAutoLogin();

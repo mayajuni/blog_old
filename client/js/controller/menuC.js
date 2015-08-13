@@ -22,6 +22,11 @@ angular.module('blog')
                 $modal({templateUrl: 'client/html/menu/menuEdit.tpl.ng.html', controller: 'editMenuC', animation: 'am-fade-and-slide-top'});
             };
 
+            /* 게시판 등록 창 오픈 */
+            $scope.openCreateBoard = function() {
+                $modal({templateUrl: 'client/html/board/boardCreate.tpl.ng.html', controller: 'boardCreateC', animation: 'am-fade-and-slide-top'});
+            };
+
             /* 메뉴 닫기 */
             $scope.menuClose = function() {
                 $(".collapse").collapse('hide');

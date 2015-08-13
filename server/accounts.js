@@ -12,12 +12,6 @@ Accounts.validateNewUser(function(user) {
  * 로그인 완료후
  */
 Accounts.validateLoginAttempt(function(obj) {
-
-    /*var userId = obj.user.username;
-    var dd = Accounts.token.getToken(userId);
-
-    obj.user.token = dd;*/
-
     return true;
 });
 
@@ -29,7 +23,7 @@ Accounts.validateLoginAttempt(function(obj) {
  */
 Accounts.createToken = function(userId) {
     var token = Random.secret();
-    Meteor.users.update({username:userId}, {$set: {'services.token.loginToken': token}});
+    Meteor.users.update({_id:userId}, {$set: {'services.token.loginToken': token}});
 
     return token;
 };
@@ -42,10 +36,14 @@ Accounts.createToken = function(userId) {
  */
 Accounts.registerLoginHandler("accounts-token", function(options) {
     if (!options.token) {
-        return {error: new Meteor.Error(400, "invalid-token")};
+        throw new Meteor.Error(400, "invalid-token");
     }
 
     var user = Meteor.users.findOne({ 'services.token.loginToken': options.token });
+
+    if(!user) {
+        throw new Meteor.Error(401, "Not Member");
+    }
 
     return {
         userId: user._id

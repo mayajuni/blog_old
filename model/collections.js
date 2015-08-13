@@ -29,3 +29,8 @@ AutoSeqs = new Meteor.Collection("autoSeqs");
  */
 Menu = new Meteor.Collection("menus");
 
+Files = new FS.Collection("Files", {
+    stores: [
+        new FS.Store.GridFS("original")
+    ]
+});

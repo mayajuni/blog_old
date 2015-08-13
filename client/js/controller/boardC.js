@@ -9,12 +9,8 @@ angular.module('blog')
         function($scope, $meteor, $stateParams) {
             $scope.board = $scope.$meteorCollection(Board).$meteorSuvscribe('getBoardDetail', $stateParams.seq);
         }])
-    .controller('boardEditC', ['$scope', '$meteor', '$stateParams',
-        function($scope, $meteor, $stateParams) {
-            $scope.board = {};
-            if(!!$stateParams.seq) {
-                $scope.board = $scope.$meteorCollection(Board).$meteorSuvscribe('getBoardDetail', $stateParams.seq);
-            }
+    .controller('boardCreateC', ['$scope', '$meteor',
+        function($scope, $meteor) {
 
 
         }])

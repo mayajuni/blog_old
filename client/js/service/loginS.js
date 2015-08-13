@@ -14,10 +14,18 @@ angular.module('blog')
                         var token = $localStorage.get('token') || $sessionStorage.get('token') || false;
 
                         if(!!token) {
-                            Accounts.loginWithToken(token);
-                            if(!$sessionStorage.get('token')) {
-                                $sessionStorage.set('token', token);
-                            }
+                            Accounts.loginWithToken(token, function(error){
+                                if(error) {
+                                    console.log(error);
+                                    $sessionStorage.clear();
+                                    $localStorage.clear();
+                                    return;
+                                }
+
+                                if(!$sessionStorage.get('token')) {
+                                    $sessionStorage.set('token', token);
+                                }
+                            });
                         }
                     });
                 },
