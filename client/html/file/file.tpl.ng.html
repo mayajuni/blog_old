@@ -10,7 +10,10 @@
                 <a ng-href="{{file.url()}}" target="_blank"><img draggable="false" ng-src=" {{ file.url() }}" class="img-circle" /></a>
             </div>
             <div class="btn-box">
-                <button class="btn btn-default btn-xs" ng-click="showInfo(list)">Show Info</button>
+                <!--<button class="btn btn-default btn-xs" ng-click="showInfo(list)">Show Info</button>-->
+                <button class="btn btn-default btn-xs" data-animation="am-flip-x" bs-dropdown="info" aria-haspopup="true" aria-expanded="false">
+                    Show Info
+                </button>
                 <button class="btn btn-danger btn-xs" ng-click="remove(file._id)">Remove</button>
             </div>
         </li>

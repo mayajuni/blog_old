@@ -2,16 +2,16 @@
  * Created by mayaj on 2015-08-13.
  */
 /**
- * Created by µ¿ÁØ on 2015-07-28.
+ * Created by ë™ì¤€ on 2015-07-28.
  */
 angular.module('blog')
     .factory('menuS', ['$meteor', '$rootScope', '$q', '$location',
         function($meteor, $rootScope, $q, $location) {
-            /* body Å¬¸¯ ÀÌº¥Æ® */
+            /* body í´ë¦­ ì´ë²¤íŠ¸ */
             $('body').click(function(e) {
-                /* ¸Þ´º°¡ º¸ÀÏ¶§ */
+                /* ë©”ë‰´ê°€ ë³´ì¼ë•Œ */
                 if($('body').hasClass('show-menu')){
-                    /* section°ú header¸¦ Å¬¸¯ÇÏ¸é ´Ý¾Æ¶ó */
+                    /* sectionê³¼ headerë¥¼ í´ë¦­í•˜ë©´ ë‹«ì•„ë¼ */
                     if($('section').has(e.target).length > 0 || ($('header').has(e.target).length > 0 && $('#toggleMenuBtn').has(e.target).length < 1)){
                         $("section, .container-fluid").animate({ 'right': '0px' }, 200);
                         $("#menuBox").animate({ 'right': '-300px' }, 200);
@@ -22,7 +22,7 @@ angular.module('blog')
 
             var service = {
                 /**
-                 * ¸Þ´º ¸®ÅÏ
+                 * ë©”ë‰´ ë¦¬í„´
                  */
                 getMenu: function() {
                     var deferred  = $q.defer();
@@ -35,20 +35,20 @@ angular.module('blog')
                     return deferred.promise;
                 },
                 /**
-                 * ¶ó¿ìÅÍ°¡ º¯°æµÉ¶§¸¶´Ù ÀÌº¥Æ®
-                 * º´°æ µÉ¶§¸¶´Ù activeÇÑ ¸Þ´º¸¦ Ã£´Â´Ù.
+                 * ë¼ìš°í„°ê°€ ë³€ê²½ë ë•Œë§ˆë‹¤ ì´ë²¤íŠ¸
+                 * ë³‘ê²½ ë ë•Œë§ˆë‹¤ activeí•œ ë©”ë‰´ë¥¼ ì°¾ëŠ”ë‹¤.
                  *
                  * @param $scope: Object
                  */
                 changeMenuEvent: function($scope) {
-                    /* ¸Þ´º°¡ º¯°æ µÉ¶§¸¶´Ù ÀÌº¥Æ® ÀÏ¾î³­´Ù. */
+                    /* ë©”ë‰´ê°€ ë³€ê²½ ë ë•Œë§ˆë‹¤ ì´ë²¤íŠ¸ ì¼ì–´ë‚œë‹¤. */
                     $rootScope.$on('$locationChangeSuccess', function() {
-                        /* ÇöÀç ¸Þ´º active */
+                        /* í˜„ìž¬ ë©”ë‰´ active */
                         service.activeMenu($scope);
                     });
                 },
                 /**
-                 * activeÇÑ ¸Þ´º¸¦ Ã£´Â´Ù.
+                 * activeí•œ ë©”ë‰´ë¥¼ ì°¾ëŠ”ë‹¤.
                  *
                  * @param $scope: Object
                  */
@@ -85,7 +85,7 @@ angular.module('blog')
                         $scope.$emit('sectionHeaderChange', sectionHeader);
                     }
                 },
-                /* °ü¸®ÀÚ ¸Þ´º */
+                /* ê´€ë¦¬ìž ë©”ë‰´ */
                 adminMenus: [
                     { "text": "<i class=\"fa fa-bars\"></i> Menu", "click": "openEditMenu()" },
                     { "text": "<i class=\"fa fa-pencil\"></i> Board</a>", "click": "openCreateBoard()" },

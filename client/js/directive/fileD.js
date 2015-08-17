@@ -12,7 +12,7 @@ angular.module('blog')
                 fileList: '='
             },
             templateUrl: 'client/html/file/file.tpl.ng.html',
-            controller: ['$scope', '$meteor', function($scope, $meteor){
+            controller: ['$scope', '$meteor', '$modal', function($scope, $meteor, $modal){
                 $scope.files = $meteor.collectionFS(Files, false).subscribe('files');
 
                 $scope.addFile = function(files) {
@@ -21,6 +21,19 @@ angular.module('blog')
                             $scope.files.save(files[i]);
                         }
                     }
+                };
+
+                $scope.showInfo = function(info) {
+                    $modal({templateUrl: 'client/html/menu/menuEdit.tpl.ng.html', controller: 'editMenuC', animation: 'am-fade-and-scale', placement:'center'});
+                };
+
+                $scope.info = function(info) {
+                    return [
+                        {"text": "Name : " +info.original.name},
+                        {"text": "Size : " +info.original.size * 0.000977},
+                        {"text": "Type : " +info.original.type},
+                        {"text": "URL : " +info.url()}
+                    ]
                 };
 
                 $scope.remove = function(_id) {
