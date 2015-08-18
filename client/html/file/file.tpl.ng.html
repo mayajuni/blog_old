@@ -1,20 +1,41 @@
 <div ngf-drop ngf-select ngf-change="addFile($files)" class="drop-box"
      ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true">Drop file here or click to upload</div>
+
 <div class="file-list">
     <ul class="file">
-        <li ng-repeat="file in files">
-            <div class="file-icon" ng-if="file.original.type.indexOf('image') < 0">
+        <li ng-repeat="file in fileList">
+            <div class="file-loading" ng-if="!uploadedFiles[$index]._id">
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                </div>
+            </div>
+            <div class="file-icon" ng-if="file.type.indexOf('image') < 0">
                 <i class="fa fa-file-text-o"></i>
             </div>
-            <div class="text-center" ng-if="file.original.type.indexOf('image') > -1">
-                <a ng-href="{{file.url()}}" target="_blank"><img draggable="false" ng-src=" {{ file.url() }}" class="img-circle" /></a>
+            <div class="text-center" ng-if="file.type.indexOf('image') > -1">
+                <a ng-href="{{uploadedFiles[$index].url()}}" target="_blank"><img draggable="false" ngf-src="file" class="img-circle" /></a>
             </div>
             <div class="btn-box">
-                <!--<button class="btn btn-default btn-xs" ng-click="showInfo(list)">Show Info</button>-->
-                <button class="btn btn-default btn-xs" data-animation="am-flip-x" bs-dropdown="info" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-default btn-xs" title="File Info" placement="bottom"
+                        data-animation="am-flip-x" data-auto-close="1" bs-popover data-html="true"
+                        data-content="
+                        <dl>
+                            <dt>Name</dt>
+                            <dd>{{uploadedFiles[$index].original.name}}</dd>
+                            <dt>Size</dt>
+                            <dd>{{uploadedFiles[$index].original.size}}</dd>
+                            <dt>Type</dt>
+                            <dd>{{uploadedFiles[$index].original.type}}</dd>
+                            <dt>Url</dt>
+                            <dd>{{uploadedFiles[$index].url().substr(0, file.url().indexOf('?'))}}</dd>
+                        </dl>
+                        ">
                     Show Info
                 </button>
-                <button class="btn btn-danger btn-xs" ng-click="remove(file._id)">Remove</button>
+
+                <button class="btn btn-danger btn-xs" ng-click="remove(file._id, $index)">Remove</button>
             </div>
         </li>
     </ul>

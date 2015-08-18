@@ -62,3 +62,20 @@
     text-align: center;
     line-height: 1.8;
 }
+
+.file dd {
+    word-break: break-all;
+    padding-bottom: 5px;
+}
+
+.file .popover {
+    max-width: 100%;
+    min-width: 500px;
+}
+
+.file .file-loading {
+    background-color: rgba(0,0,0, 0.6);
+    width: 75px;
+    height: 110px;
+    position: absolute;
+}

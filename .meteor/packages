@@ -18,4 +18,3 @@ angular:angular-sanitize
 mizzao:user-status
 cfs:standard-packages
 cfs:gridfs
-danialfarid:ng-file-upload

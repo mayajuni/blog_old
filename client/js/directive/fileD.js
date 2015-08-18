@@ -13,30 +13,26 @@ angular.module('blog')
             },
             templateUrl: 'client/html/file/file.tpl.ng.html',
             controller: ['$scope', '$meteor', '$modal', function($scope, $meteor, $modal){
+                $scope.fileList = [];
+                $scope.uploadedFiles = [];
                 $scope.files = $meteor.collectionFS(Files, false).subscribe('files');
+
 
                 $scope.addFile = function(files) {
                     if (files.length > 0) {
                         for(var i=0; i<files.length; i++){
-                            $scope.files.save(files[i]);
+                            $scope.fileList.push(files[i]);
+
+                            $scope.files.save(files[i]).then(function(fileObj) {
+                                $scope.uploadedFiles.push(fileObj[0]._id);
+                            });
                         }
                     }
                 };
 
-                $scope.showInfo = function(info) {
-                    $modal({templateUrl: 'client/html/menu/menuEdit.tpl.ng.html', controller: 'editMenuC', animation: 'am-fade-and-scale', placement:'center'});
-                };
-
-                $scope.info = function(info) {
-                    return [
-                        {"text": "Name : " +info.original.name},
-                        {"text": "Size : " +info.original.size * 0.000977},
-                        {"text": "Type : " +info.original.type},
-                        {"text": "URL : " +info.url()}
-                    ]
-                };
-
-                $scope.remove = function(_id) {
+                $scope.remove = function(_id, index) {
+                    $scope.fileList.splice(index, 1);
+                    $scope.uploadedFiles.splice(index, 1);
                     $scope.files.remove(_id);
                 };
             }]
