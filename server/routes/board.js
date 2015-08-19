@@ -35,13 +35,22 @@ Meteor.methods({
     boardSave: function(board) {
         LoginCheck(this.userId);
         var vo = boardVO(board, code.insert);
+        vo.userId = this.userId;
 
-        Board.insert(boardInfo);
+        Board.insert(vo);
     },
     boardUpdate: function(board){
         LoginCheck(this.userId);
         var vo = boardVO(board, code.insert);
+        var _id = vo._id;
+        delete vo._id;
 
-        Board.update({_id: vo._id});
+        Board.update({_id: vo._id, userId: this.userId}, {$set: vo});
+    },
+    boardDelete: function(board){
+        LoginCheck(this.userId);
+        var vo = boardVO(board, code.insert);
+
+        Board.update({_id: vo._id, userId: this.userId}, {$set: vo});
     }
 });
