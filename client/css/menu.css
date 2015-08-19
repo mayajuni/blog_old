@@ -18,33 +18,33 @@
     padding: 0;
 }
 
-.nav > li {
+.menu-box-right .nav > li {
     padding-top: 5px;
 }
 
-.nav li > a{
+.menu-box-right .nav li > a{
     color: #ededed;
     font-weight: 600;
     cursor: pointer;
 }
 
-.nav > li.active > a, .nav > li > a:hover, .nav > li > a:focus{
+.menu-box-right .nav > li.active > a, .menu-box-right .nav > li > a:hover, .menu-box-right .nav > li > a:focus{
     color: #2d2f33;
     background-color: #eee;
 }
 
-.nav .sub-nav {
+.menu-box-right .nav .sub-nav {
     background-color: #424242;
     padding: 0;
 }
 
-.nav .sub-nav > li > a {
+.menu-box-right .nav .sub-nav > li > a {
     position: relative;
     display: block;
     padding: 10px 40px;
 }
 
-.nav .sub-nav > li.active > a,.nav .sub-nav > li > a:hover, .nav .sub-nav > li > a:focus{
+.menu-box-right .nav .sub-nav > li.active > a, .menu-box-right .nav .sub-nav > li > a:hover, .menu-box-right .nav .sub-nav > li > a:focus{
     color: #eee;
     font-weight: 800;
 }

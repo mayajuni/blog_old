@@ -45,7 +45,13 @@
                     <div ng-if="!!division">
                         <hr>
                         <h4>
-                            {{!!select.step2 ? 'Step2' : 'Step1'}} {{division | firstCharUpper}}
+                            <span ng-if="division == 'create'">
+                                {{!!select.step1 ? 'Step2' : 'Step1'}}
+                            </span>
+                            <span ng-if="division != 'create'">
+                                {{!!select.step2 ? 'Step2' : 'Step1'}}
+                            </span>
+                            {{division | firstCharUpper}}
                             <span ng-if="!!select.step1 && division != 'create'">
                                 ({{!!select.step2 ? select.step2.name : select.step1.name}})
                             </span>
@@ -62,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label for="rank" class="control-label">Rank</label>
-                            <input type="text" class="form-control" id="rank" ng-model="menu.rank" placeholder="Rank" required />
+                            <input type="number" class="form-control" id="rank" ng-model="menu.rank" placeholder="Rank" required />
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
@@ -79,7 +85,7 @@
                 </div>
                 <div class="modal-footer" ng-if="!!division">
                     <button class="btn btn-default btn-lg btn-block" ng-click="submit()"
-                            ng-disabled="!!myForm.$error.required || disabledButtom || nameError">
+                            ng-disabled="!!myForm.$error.required || nameError">
                         Submit
                     </button>
                 </div>

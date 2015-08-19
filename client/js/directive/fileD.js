@@ -12,28 +12,46 @@ angular.module('blog')
                 fileList: '='
             },
             templateUrl: 'client/html/file/file.tpl.ng.html',
-            controller: ['$scope', '$meteor', '$modal', function($scope, $meteor, $modal){
-                $scope.fileList = [];
-                $scope.uploadedFiles = [];
-                $scope.files = $meteor.collectionFS(Files, false).subscribe('files');
+            controller: ['$scope', '$meteor', function($scope, $meteor){
+                $scope.files = [];
+                $scope.fileList = $scope.fileList || [];
+                $scope.filesC = $meteor.collectionFS(Files, false);
 
 
                 $scope.addFile = function(files) {
                     if (files.length > 0) {
                         for(var i=0; i<files.length; i++){
+                            $scope.files.push(files[i]);
                             $scope.fileList.push(files[i]);
 
-                            $scope.files.save(files[i]).then(function(fileObj) {
-                                $scope.uploadedFiles.push(fileObj[0]._id);
+                            $scope.filesC.save(files[i]).then(function(fileObj) {
+                                var fileInfo = {
+                                    _id: fileObj[0]._id._id,
+                                    name: fileObj[0]._id.original.name,
+                                    size: (fileObj[0]._id.original.size* 0.000977).toFixed(2),
+                                    type: fileObj[0]._id.original.type,
+                                    url: '/cfs/files/Files/'+fileObj[0]._id._id+'/'+ fileObj[0]._id.original.name
+                                };
+                                $scope.fileList[$scope.fileList.length-1] = fileInfo;
+                            }, function(error){
+                                $scope.fileList[$scope.fileList.length-1].error = error.message;
                             });
                         }
                     }
                 };
 
-                $scope.remove = function(_id, index) {
-                    $scope.fileList.splice(index, 1);
-                    $scope.uploadedFiles.splice(index, 1);
-                    $scope.files.remove(_id);
+                $scope.remove = function(_id, index, isError) {
+                    if(isError) {
+                        $scope.files.splice(index, 1);
+                        $scope.fileList.splice(index, 1);
+                    }else if(_id){
+                        $scope.filesC.remove(_id).then(function() {
+                            $scope.files.splice(index, 1);
+                            $scope.fileList.splice(index, 1);
+                        }, function(error) {
+                            console.log(error);
+                        });
+                    }
                 };
             }]
         }

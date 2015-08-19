@@ -2,8 +2,8 @@
  * Created by 동준 on 2015-07-29.
  */
 angular.module('blog')
-    .controller('menuC', ['$scope', '$rootScope', 'loginS', '$modal', 'menuS',
-        function($scope, $rootScope, loginS, $modal, menuS){
+    .controller('menuC', ['$scope', 'loginS', '$modal', 'menuS',
+        function($scope, loginS, $modal, menuS){
             /* 관리자 메뉴 설정 */
             $scope.adminMenu = menuS.adminMenus;
 
@@ -36,7 +36,7 @@ angular.module('blog')
             menuS.changeMenuEvent($scope);
 
             /* 메뉴 가지고 오기 */
-            menuS.getMenu($scope).then(function(menuList) {
+            menuS.getMenu().then(function(menuList) {
                 $scope.menuList = menuList;
                 menuS.activeMenu($scope);
             })
@@ -106,25 +106,26 @@ angular.module('blog')
                 }
             };
 
-            /* 등록 및 수정 진행 */
             $scope.submit = function() {
                 /* 버튼 디세이블 */
-                $scope.disabledButtom = true;
+                $rootScope.$broadcast("loader_show");
+                if($scope.select.step1) {
+                    $scope.menu._id = $scope.select.step1._id;
+                }
                 /* 등록일시 */
                 if($scope.division == 'create') {
                     $meteor.call('saveMenu', $scope.menu).then(reset, error);
                 }
                 /* 수정일시 */
                 else if($scope.division == 'update') {
-                    $scope.menu._id = $scope.select.step1._id;
                     $meteor.call('updateMenu', $scope.menu).then(reset, error)
                 }
                 /* 삭제일시 */
                 else {
-                    $scope.menu._id = $scope.select.step1._id;
                     $meteor.call('removeMenu', $scope.menu).then(reset, error);
                 }
             };
+            /* 등록 및 수정 진행 */
 
             /* 메뉴 셋팅 */
             function setMenu(obj) {
@@ -141,14 +142,14 @@ angular.module('blog')
             /* 에러 통합 */
             function error(err) {
                 Session.set('errorMessage', err);
-                $scope.disabledButtom = false;
+                $rootScope.$broadcast("loader_hide");
             }
 
             /* reset */
             function reset() {
                 $scope.menu = {};
                 $scope.select = {};
-                $scope.disabledButtom = false;
+                $rootScope.$broadcast("loader_hide");
             }
 
             /* division 변경이 있을시 */
@@ -157,7 +158,7 @@ angular.module('blog')
             });
 
             /* 메뉴 가져오기 */
-            menuS.getMenu($scope).then(function(menuList) {
+            menuS.getMenu().then(function(menuList) {
                 $scope.menuList = menuList;
             })
         }])

@@ -2,6 +2,17 @@
  * Created by �룞以� on 2015-07-22.
  */
 angular.module('utils', [])
+    /* 로딩중 */
+    .directive("loader", function () {
+        return function ($scope, element, attrs) {
+            $scope.$on("loader_show", function () {
+                return element.show();
+            });
+            return $scope.$on("loader_hide", function () {
+                return element.hide();
+            });
+        };
+    })
     /* html을 제외한 나머지 문자열을 자르고 ... */
     .filter('cutHtmlTagAndLimit', function(limitToFilter) {
         return function(input, limit){

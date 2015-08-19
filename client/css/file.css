@@ -70,7 +70,7 @@
 
 .file .popover {
     max-width: 100%;
-    min-width: 500px;
+    min-width: 300px;
 }
 
 .file .file-loading {
@@ -78,4 +78,22 @@
     width: 75px;
     height: 110px;
     position: absolute;
+}
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 230px;
+    height: 65px;
+    text-align: center;
+    padding-top: 17px;
+    margin-left: 10px;
+}
+
+.drop-box.dragover {
+    border: 5px dashed blue;
+}
+
+.drop-box.dragover-err {
+    border: 5px dashed red;
 }

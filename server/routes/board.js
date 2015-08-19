@@ -29,31 +29,19 @@ Meteor.publish("getBoardDetail", function(seq) {
 });
 
 /**
- * 게시판 저장
- *
+ * 메소드
  */
-Meteor.publish("saveBoard", function(param) {
-    LoginCheck(this.userId);
+Meteor.methods({
+    boardSave: function(board) {
+        LoginCheck(this.userId);
+        var vo = boardVO(board, code.insert);
 
-    return Board.insert(param);
-});
+        Board.insert(boardInfo);
+    },
+    boardUpdate: function(board){
+        LoginCheck(this.userId);
+        var vo = boardVO(board, code.insert);
 
-/**
- * 게시판 수정
- *
- */
-Meteor.publish("updateBoard", function(seq) {
-    LoginCheck(this.userId);
-
-    return Board.update({_id: seq});
-});
-
-/**
- * 게시판 삭제
- *
- */
-Meteor.publish("removeBoard", function(seq) {
-    LoginCheck(this.userId);
-
-    return Board.remove({_id: seq});
+        Board.update({_id: vo._id});
+    }
 });

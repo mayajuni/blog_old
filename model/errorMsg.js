@@ -3,5 +3,7 @@
  */
 errorM = {
     needLogin : 'Need Login',
-    needParams : 'Need Parameters'
+    needParams : 'Need Parameters',
+    needFile : 'Need FileInfo',
+    notAuth : 'Not authorized'
 };

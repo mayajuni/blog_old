@@ -15,8 +15,8 @@
         <h5 class="sidebar-header">Navigation</h5>
         <ul class="nav">
             <li ng-repeat="list in menuList" ng-class="{'active' : list.active}">
-                <a ng-if="!list.subMenuList" ng-href="{{list.url}}">{{list.name}}</a>
-                <a ng-if="!!list.subMenuList" type="button" ng-click="menuClose()" data-toggle="collapse" data-target="#{{list.name}}" aria-expanded="false">
+                <a ng-if="!list.subMenuList || list.subMenuList.length < 1" ng-href="{{list.url}}">{{list.name}}</a>
+                <a ng-if="!!list.subMenuList && list.subMenuList.length > 0" type="button" ng-click="menuClose()" data-toggle="collapse" data-target="#{{list.name}}" aria-expanded="false">
                     <i ng-class="list.icon"></i> {{list.name}}
                 </a>
                 <ul class="sub-nav collapse" ng-if="!!list.subMenuList" id="{{list.name}}" >

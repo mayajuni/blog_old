@@ -24,12 +24,12 @@ angular.module('blog')
                 /**
                  * 메뉴 리턴
                  */
-                getMenu: function() {
+                getMenu: function(query) {
                     var deferred  = $q.defer();
                     $meteor.subscribe('getMenuList').then(function() {
                         deferred.resolve(
                             $meteor.collection(function() {
-                                return Menu.find({}, {}, {sort: {rank : -1}});
+                                return Menu.find(query || {}, {sort: {rank : 1}});
                             }, false));
                     });
                     return deferred.promise;
@@ -56,14 +56,16 @@ angular.module('blog')
                     var sectionHeader = {};
                     if(!!$scope.menuList) {
                         for(var i=0; i<$scope.menuList.length; i++){
-                            if(!$scope.menuList[i].subMenuList && $location.path().indexOf($scope.menuList[i].url) > -1){
+                            if((!$scope.menuList[i].subMenuList ||$scope.menuList[i].subMenuList.length < 1)
+                                && $location.path().indexOf($scope.menuList[i].url) > -1){
+
                                 $scope.menuList[i].active = true;
                                 sectionHeader.title = $scope.menuList[i].name;
                             }else{
                                 $scope.menuList[i].active = false;
                             }
 
-                            if(!!$scope.menuList[i].subMenuList) {
+                            if(!!$scope.menuList[i].subMenuList && $scope.menuList[i].subMenuList.length > 0) {
                                 for (var j = 0; j < $scope.menuList[i].subMenuList.length; j++) {
                                     $scope.menuList[i].subActive = false;
                                     if ($location.path().indexOf($scope.menuList[i].subMenuList[j].url) > -1) {

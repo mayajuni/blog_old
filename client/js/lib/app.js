@@ -10,6 +10,7 @@ angular.module('blog', [
     'ui.router',
     'storage',
     'ngFileUpload',
+    'textAngular',
     'utils'
 ])
     .config(['$urlRouterProvider', '$stateProvider', '$locationProvider', 'paginationTemplateProvider',
