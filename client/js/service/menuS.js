@@ -90,6 +90,9 @@ angular.module('blog')
 
                         if($location.path().indexOf('/detail/') < 0) {
                             $scope.$emit('sectionHeaderChange', sectionHeader);
+                            $scope.$emit('isBoardDetail', false);
+                        } else {
+                            $scope.$emit('isBoardDetail', true);
                         }
                     }
                 },

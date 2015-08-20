@@ -24,6 +24,14 @@ angular.module('blog')
                         $('body').addClass('show-menu');
                     }
                 };
+
+                $scope.showShare = function() {
+
+                };
+
+                $scope.$on('isBoardDetail', function(e, isBoardDetail){
+                    $scope.isBoardDetail = isBoardDetail;
+                })
             }]
         }
     });
