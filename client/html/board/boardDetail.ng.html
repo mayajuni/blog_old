@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="board-edit-box" >
+            <span ng-if="!!$root.currentUser && $root.currentUser._id == board.userId">
+                <span>
+                    <button class="btn btn-success btn-ms" ng-click="openCreateBoard()" data-trigger="hover" data-placement="bottom" data-type="success" data-title="Create Board" bs-tooltip>
+                         <i class="fa fa-pencil"></i>
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-warning btn-ms" data-trigger="hover" data-placement="bottom" data-type="warning" data-title="Edit Board" bs-tooltip>
+                        <i class="fa fa-pencil-square-o"></i>
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-danger btn-ms" data-trigger="hover" data-placement="bottom" data-type="danger" data-title="Delete Board" bs-tooltip>
+                        <i class="fa fa-trash-o"></i>
+                    </button>
+                </span>
+            </span>
+            <span>
+                <button class="btn btn-info btn-ms" data-trigger="hover" data-placement="bottom" data-type="info" data-title="File List" bs-tooltip>
+                    <i class="fa fa-file"></i>
+                </button>
+            </span>
+        </div>
+        <div ng-model="board.content" ta-bind="text"></div>
+    </div>
+</div>

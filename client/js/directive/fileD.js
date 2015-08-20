@@ -1,5 +1,5 @@
 /**
- * Created by mayaj on 2015-08-13.
+ * Created by 동준 on 2015-08-13.
  */
 /**
  * Created by 동준 on 2015-07-25.
@@ -23,22 +23,26 @@ angular.module('blog')
                         for(var i=0; i<files.length; i++){
                             $scope.files.push(files[i]);
                             $scope.fileList.push(files[i]);
-
-                            $scope.filesC.save(files[i]).then(function(fileObj) {
-                                var fileInfo = {
-                                    _id: fileObj[0]._id._id,
-                                    name: fileObj[0]._id.original.name,
-                                    size: (fileObj[0]._id.original.size* 0.000977).toFixed(2),
-                                    type: fileObj[0]._id.original.type,
-                                    url: '/cfs/files/Files/'+fileObj[0]._id._id+'/'+ fileObj[0]._id.original.name
-                                };
-                                $scope.fileList[$scope.fileList.length-1] = fileInfo;
-                            }, function(error){
-                                $scope.fileList[$scope.fileList.length-1].error = error.message;
-                            });
+                            uploadFile($scope.fileList.length -1);
                         }
                     }
                 };
+
+                function uploadFile(index) {
+                    $scope.filesC.save($scope.files[index]).then(function(fileObj) {
+                        var fileInfo = {
+                            _id: fileObj[0]._id._id,
+                            name: fileObj[0]._id.original.name,
+                            size: (fileObj[0]._id.original.size* 0.000977).toFixed(2),
+                            type: fileObj[0]._id.original.type,
+                            url: '/cfs/files/Files/'+fileObj[0]._id._id+'/'+ fileObj[0]._id.original.name
+                        };
+                        $scope.fileList[index] = fileInfo;
+                        console.log($scope.fileList);
+                    }, function(error){
+                        $scope.fileList[index].error = error.message;
+                    });
+                }
 
                 $scope.remove = function(_id, index, isError) {
                     if(isError) {

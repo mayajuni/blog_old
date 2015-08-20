@@ -1,18 +1,18 @@
 /**
- * Created by mayaj on 2015-08-13.
+ * Created by 동준 on 2015-08-13.
  */
 /**
  * Created by 동준 on 2015-07-28.
  */
 angular.module('blog')
-    .factory('menuS', ['$meteor', '$rootScope', '$q', '$location',
-        function($meteor, $rootScope, $q, $location) {
+    .factory('menuS', ['$meteor', '$rootScope', '$q', '$location', '$timeout',
+        function($meteor, $rootScope, $q, $location, $timeout) {
             /* body 클릭 이벤트 */
-            $('body').click(function(e) {
+            $('html').click(function(e) {
                 /* 메뉴가 보일때 */
                 if($('body').hasClass('show-menu')){
                     /* section과 header를 클릭하면 닫아라 */
-                    if($('section').has(e.target).length > 0 || ($('header').has(e.target).length > 0 && $('#toggleMenuBtn').has(e.target).length < 1)){
+                    if($('#menuBox').has(e.target).length < 1 &&  $('#toggleMenuBtn').has(e.target).length < 1){
                         $("section, .container-fluid").animate({ 'right': '0px' }, 200);
                         $("#menuBox").animate({ 'right': '-300px' }, 200);
                         $('body').removeClass('show-menu');
@@ -76,7 +76,11 @@ angular.module('blog')
                                         sectionHeader.title = $scope.menuList[i].name;
                                         sectionHeader.subTitle = $scope.menuList[i].subMenuList[j].name;
 
-                                        $("#"+$scope.menuList[i].name).collapse('show');
+                                        var name = $scope.menuList[i].name;
+                                        /* 새로 반복문 돌시 반복문이 끝나고 show 해줘야되서 timeout 줌 */
+                                        $timeout(function() {
+                                            $("#"+name).collapse('show');
+                                        }, 100);
                                     } else {
                                         $scope.menuList[i].subMenuList[j].active = false;
                                     }
@@ -84,7 +88,9 @@ angular.module('blog')
                             }
                         }
 
-                        $scope.$emit('sectionHeaderChange', sectionHeader);
+                        if($location.path().indexOf('/detail/') < 0) {
+                            $scope.$emit('sectionHeaderChange', sectionHeader);
+                        }
                     }
                 },
                 /* 관리자 메뉴 */

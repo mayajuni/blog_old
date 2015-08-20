@@ -1,5 +1,5 @@
 /**
- * Created by mayaj on 2015-08-13.
+ * Created by 동준 on 2015-08-13.
  */
 Files.allow({
     /**
@@ -42,6 +42,12 @@ Files.allow({
         FileLogs.remove({_id: file._id});
 
         return true;
+    },
+    download: function () {
+        return true;
+    },
+    update: function (userId) {
+        return (userId ? true : false);
     }
 });
 

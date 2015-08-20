@@ -15,8 +15,10 @@ angular.module('blog', [
 ])
     .config(['$urlRouterProvider', '$stateProvider', '$locationProvider', 'paginationTemplateProvider',
         function($urlRouterProvider, $stateProvider, $locationProvider, paginationTemplateProvider){
+            /* 페이징 tpl */
             paginationTemplateProvider.setPath('client/html/pagination/pagination.tpl.ng.html');
 
+            /* html5 모드 */
             $locationProvider.html5Mode(true);
 
             $stateProvider
@@ -36,7 +38,7 @@ angular.module('blog', [
                     controller: 'boardListC'
                 })
                 .state('boardDetail', {
-                    url: '/board/:division/:seq',
+                    url: '/board/:division/detail/:seq',
                     templateUrl: 'client/html/board/boardDetail.ng.html',
                     controller: 'boardDetailC'
                 })

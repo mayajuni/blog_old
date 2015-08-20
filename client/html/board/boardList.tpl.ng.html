@@ -1,15 +1,20 @@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="board-edit-box">
+            <button class="btn btn-success btn-ms" type="submit" data-trigger="hover" data-placement="bottom" data-type="success" data-title="Create Board" bs-tooltip ng-click="openCreateBoard()">
+                <i class="fa fa-pencil"></i>
+            </button>
+        </div>
         <div class="board-list" dir-paginate="list in boardList | itemsPerPage: perPage | orderBy:regDt:false" total-items="totalCount">
-            <a ng-href="{{list.url}}">
+            <a ng-href="/board/{{list.division}}/detail/{{list._id}}">
                 <h2>
                     {{list.title}}
                 </h2>
                 <h3 class="board-small-content">
-                    {{list.content | cutHtmlTagAndLimit : 20}}
+                    {{list.content | cutHtmlTagAndLimit : 120}}
                 </h3>
             </a>
-            <p class="board-meta">Posted by <a href="/">{{list.division}}</a> on {{list.regDt | date : 'MMMM dd, yyyy'}}</p>
+            <p class="board-meta">Posted by <a ng-href="/board/{{list.division}}">{{list.division}}</a> on {{list.regDt | date : 'MMMM dd, yyyy'}} at {{list.regDt | date : 'HH:mm:ss'}}</p>
         </div>
         <!-- Pager -->
         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" ng-if="!boardList"></dir-pagination-controls>

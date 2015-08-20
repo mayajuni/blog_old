@@ -1,9 +1,8 @@
 /**
- * Created by mayaj on 2015-08-19.
+ * Created by 동준 on 2015-08-19.
  */
 boardVO = function(data, todo) {
-    function Vo() {
-        return {
+    var VO = {
             _id : {todo: "update, delete", validate : true},
             id : String,
             name : String,
@@ -12,11 +11,9 @@ boardVO = function(data, todo) {
             content : {todo: "insert, update", validate : true},
             url : String,
             fileList : Array,
-            regDt : {default: Date()}
-        }
-    }
+            regDt : {default: new Date()}
+    };
 
-    var vo = new Vo();
-    setAndValdate(data, vo, todo);
-    return vo;
+    VO = setAndValdate(data, VO, todo);
+    return VO;
 };

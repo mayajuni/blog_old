@@ -1,14 +1,13 @@
 /**
- * Created by mayaj on 2015-08-19.
+ * Created by 동준 on 2015-08-19.
  */
 setAndValdate = function(data, objectVO, todo) {
     for(var key in objectVO) {
         if(!!objectVO[key].validate) {
-            if((!objectVO[key].method || !!objectVO[key].method && (objectVO[key].method.toUpperCase().indexOf(todo.toUpperCase()) > -1))){
+            if(!objectVO[key].todo || (!!objectVO[key].todo && (objectVO[key].todo.toUpperCase().indexOf(todo.toUpperCase()) > -1))){
                 if(!data[key]){
                     var msg = !errorM[key] ? "Check " + key : errorM[key];
                     throw new Meteor.Error(409, msg);
-                    break;
                 }
             }
         }
@@ -20,4 +19,6 @@ setAndValdate = function(data, objectVO, todo) {
             delete objectVO[key];
         }
     }
+
+    return objectVO;
 };

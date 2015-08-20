@@ -28,3 +28,8 @@
 .board-list>.board-meta>a:focus {
     color: #23527c;
 }
+
+.board-edit-box {
+    margin-bottom: 10px;
+    text-align: right;
+}

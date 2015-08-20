@@ -1,0 +1,8 @@
+<div class="alert alert-danger alert-error">
+    <!--<button type="button" class="close" ng-if="dismissable" ng-click="$hide()">&times;</button>-->
+    <strong ng-bind="title"></strong>
+    <div ng-bind-html="content"></div>
+    <div>
+        <button type="button" class="btn btn-sm btn-danger" ng-if="dismissable" ng-click="$hide()">Check</button>
+    </div>
+</div>

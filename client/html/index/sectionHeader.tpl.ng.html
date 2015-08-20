@@ -2,10 +2,21 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="title-box" ng-style="">
-                    <h1>{{data.title | nullToStr: "DongJun's Blog" | firstCharUpper}}</h1>
+                <div class="title-box">
+                    <h1 ng-if="!data.isBoard">{{data.title | nullToStr: "DongJun's Blog" | firstCharUpper}}</h1>
+                    <h1 ng-if="data.isBoard">{{data.board.title | firstCharUpper}}</h1>
                     <hr class="small">
-                    <span class="sub-title">{{data.subTitle | nullToStr: "Welcome to my blog"}}</span>
+                    <div class="sub-title" ng-if="!data.isBoard">{{data.subTitle | nullToStr: "Welcome to my blog"}}</div>
+                    <div class="sub-title" ng-if="data.isBoard">
+                        <p style="font-style: italic;" >
+                            Posted by
+                            <a style="color: #ffffff; font-weight: 700;" ng-href="/board/{{data.board.division}}">
+                                {{data.board.division}}
+                            </a>
+                            on {{data.board.regDt | date : 'MMMM dd, yyyy'}}
+                            at {{data.board.regDt | date : 'HH:mm:ss'}}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 /**
- * Created by mayaj on 2015-07-31.
+ * Created by 동준 on 2015-07-31.
  */
 if(Meteor.isClient) {
     Accounts.loginWithToken = function(token, callback) {

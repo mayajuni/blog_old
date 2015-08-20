@@ -11,7 +11,7 @@ angular.module('blog')
                 search: '@'
             },
             templateUrl: 'client/html/board/boardList.tpl.ng.html',
-            controller: ['$scope', '$meteor', function($scope, $meteor){
+            controller: ['$scope', '$meteor', 'boardS', function($scope, $meteor, boardS){
                 $scope.perPage = !$scope.perPage ? 10 : $scope.perPage;
 
                 $scope.pageChanged = function(page) {
@@ -21,6 +21,12 @@ angular.module('blog')
                 $scope.boardList = $scope.$meteorCollection(function() {
                     return Board.find({}, {sort: {regDt : -1}});
                 }, false);
+
+                $scope.openCreateBoard = function() {
+                    var scope = $scope.$new();
+                    scope.division = $scope.division;
+                    boardS.openCreateBoard(scope);
+                };
 
                 $meteor.autorun($scope, function() {
                     $scope.$meteorSubscribe('getBoardList', {

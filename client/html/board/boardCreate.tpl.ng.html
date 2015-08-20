@@ -9,15 +9,19 @@
             </div>
             <form name="myForm">
                 <div class="modal-body">
+                    <div id="alerts-container"></div>
                     <div class="form-group">
-                        <label for="select">What kind of Menu?</label>
-                        <select id="select" ng-model="board.division" class="form-control">
+                        <label>What kind of Menu?</label>
+                        <select ng-model="board.division" class="form-control" required>
                             <option value="">--choose--</option>
                             <optgroup ng-repeat="list in menuList" label="{{list.name}}">
-                                <option ng-if="(!list.subMenuList || list.subMenuList.length === 0) && list.isBoard" value="{{list.name}}">
+                                <option ng-if="(!list.subMenuList || list.subMenuList.length === 0) && list.isBoard"
+                                        ng-selected="board.division == list.name"
+                                        value="{{list.name}}">
                                     Step1 - {{list.name}}
                                 </option>
                                 <option ng-repeat="subList in list.subMenuList | orderBy : 'rank' : false"
+                                        ng-selected="board.division == subList.name"
                                         ng-if="subList.isBoard" value="{{subList.name}}">
                                     Step2 - {{subList.name}}
                                 </option>

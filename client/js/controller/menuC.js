@@ -2,8 +2,8 @@
  * Created by 동준 on 2015-07-29.
  */
 angular.module('blog')
-    .controller('menuC', ['$scope', 'loginS', '$modal', 'menuS',
-        function($scope, loginS, $modal, menuS){
+    .controller('menuC', ['$scope', 'loginS', '$modal', 'menuS', 'boardS',
+        function($scope, loginS, $modal, menuS, boardS){
             /* 관리자 메뉴 설정 */
             $scope.adminMenu = menuS.adminMenus;
 
@@ -24,7 +24,7 @@ angular.module('blog')
 
             /* 게시판 등록 창 오픈 */
             $scope.openCreateBoard = function() {
-                $modal({templateUrl: 'client/html/board/boardCreate.tpl.ng.html', controller: 'boardCreateC', animation: 'am-fade-and-slide-top'});
+                boardS.openCreateBoard();
             };
 
             /* 메뉴 닫기 */
@@ -32,17 +32,17 @@ angular.module('blog')
                 $(".collapse").collapse('hide');
             };
 
-            /* 메뉴가 변경될때 이벤트 */
-            menuS.changeMenuEvent($scope);
-
             /* 메뉴 가지고 오기 */
             menuS.getMenu().then(function(menuList) {
                 $scope.menuList = menuList;
                 menuS.activeMenu($scope);
+
+                /* 메뉴가 변경될때 이벤트 */
+                menuS.changeMenuEvent($scope);
             })
         }])
-    .controller('editMenuC', ['$scope', '$rootScope', '$meteor', 'menuS',
-        function($scope, $rootScope, $meteor, menuS){
+    .controller('editMenuC', ['$scope', 'menuS', 'meteorS',
+        function($scope, menuS, meteorS){
             $scope.menu = {};
             $scope.select = {};
 
@@ -106,26 +106,24 @@ angular.module('blog')
                 }
             };
 
-            $scope.submit = function() {
-                /* 버튼 디세이블 */
-                $rootScope.$broadcast("loader_show");
+            /* 등록 및 수정 진행 */
+            $scope.todo = function() {
                 if($scope.select.step1) {
                     $scope.menu._id = $scope.select.step1._id;
                 }
                 /* 등록일시 */
                 if($scope.division == 'create') {
-                    $meteor.call('saveMenu', $scope.menu).then(reset, error);
+                    meteorS.call('saveMenu', $scope.menu).then(reset);
                 }
                 /* 수정일시 */
                 else if($scope.division == 'update') {
-                    $meteor.call('updateMenu', $scope.menu).then(reset, error)
+                    meteorS.call('updateMenu', $scope.menu).then(reset);
                 }
                 /* 삭제일시 */
                 else {
-                    $meteor.call('removeMenu', $scope.menu).then(reset, error);
+                    meteorS.call('removeMenu', $scope.menu).then(reset);
                 }
             };
-            /* 등록 및 수정 진행 */
 
             /* 메뉴 셋팅 */
             function setMenu(obj) {
@@ -139,17 +137,10 @@ angular.module('blog')
                 }
             }
 
-            /* 에러 통합 */
-            function error(err) {
-                Session.set('errorMessage', err);
-                $rootScope.$broadcast("loader_hide");
-            }
-
             /* reset */
             function reset() {
                 $scope.menu = {};
                 $scope.select = {};
-                $rootScope.$broadcast("loader_hide");
             }
 
             /* division 변경이 있을시 */
