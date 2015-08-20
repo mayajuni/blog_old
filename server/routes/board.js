@@ -37,7 +37,17 @@ Meteor.methods({
         var vo = boardVO(board, code.insert);
         vo.userId = this.userId;
 
-        Board.insert(vo);
+        Board.insert(vo, function(error, result) {
+            if(error) {
+                throw new Meteor.Error(500, error);
+            }
+
+            if(vo.fileList.length > 0) {
+                for(var i in vo.fileList) {
+                    FileLogs.update({_id: vo.fileList[i]._id}, {$set: {boardId: result}});
+                }
+            }
+        });
     },
     boardUpdate: function(board){
         LoginCheck(this.userId);
@@ -45,12 +55,34 @@ Meteor.methods({
         var _id = vo._id;
         delete vo._id;
 
-        Board.update({_id: vo._id, userId: this.userId}, {$set: vo});
+        Board.update({_id: _id, userId: this.userId}, {$set: vo}, function(error) {
+            if(error) {
+                throw new Meteor.Error(500, error);
+            }
+
+            if(vo.fileList.length > 0) {
+                for(var i in vo.fileList) {
+                    FileLogs.update({_id: vo.fileList[i]._id}, {$set: {boardId: _id}});
+                }
+            }
+        });
     },
     boardDelete: function(board){
         LoginCheck(this.userId);
         var vo = boardVO(board, code.insert);
 
-        Board.update({_id: vo._id, userId: this.userId}, {$set: vo});
+        var boardInfo = Board.findOne({_id: vo._id, userId: this.userId});
+        if(!boardInfo) {
+            throw new Meteor.Error(409, errorM.notAuth);
+        }
+
+        if(boardInfo.fileList.length > 0) {
+            for(var i in vo.fileList) {
+                FileLogs.remove({_id: boardInfo.fileList[i]._id});
+                Files.remove(boardInfo.fileList[i]._id);
+            }
+        }
+
+        Board.remove({_id: vo._id, userId: this.userId});
     }
 });

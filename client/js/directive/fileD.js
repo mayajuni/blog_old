@@ -38,7 +38,6 @@ angular.module('blog')
                             url: '/cfs/files/Files/'+fileObj[0]._id._id+'/'+ fileObj[0]._id.original.name
                         };
                         $scope.fileList[index] = fileInfo;
-                        console.log($scope.fileList);
                     }, function(error){
                         $scope.fileList[index].error = error.message;
                     });

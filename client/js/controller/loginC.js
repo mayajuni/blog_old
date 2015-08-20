@@ -4,7 +4,7 @@
 angular.module('blog')
     .controller('loginC', ['$scope', 'loginS', '$meteor', function($scope, loginS, $meteor){
         $scope.login = {};
-
+        
         $scope.doLogin = function() {
             $scope.disabledButtom = true;
             loginS.doLogin($scope.login.id, $scope.login.pw, $scope.login.isAuto)

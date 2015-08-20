@@ -11,7 +11,7 @@ angular.module('blog')
                  */
                 openCreateBoard: function(scope) {
                     var option = {
-                        templateUrl: 'client/html/board/boardCreate.tpl.ng.html',
+                        templateUrl: 'client/html/board/boardEdit.tpl.ng.html',
                         show: true,
                         animation: 'am-fade-and-slide-top',
                         controller: 'boardCreateC'

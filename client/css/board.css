@@ -33,3 +33,41 @@
     margin-bottom: 10px;
     text-align: right;
 }
+
+.board-edit {
+    position: relative;
+}
+
+.board-alert {
+    position: fixed;
+    left: 45%;
+}
+
+#boardDetail .dropdown {
+    position: static;
+}
+
+#boardDetail .open .dropdown-menu {
+    display: block;
+    padding: 5px;
+    right: 0;
+    left: auto;
+    top: 35px;
+}
+
+#boardDetail .open .dropdown-menu a {
+    padding: 10px;
+}
+
+#boardDetail .open .dropdown-menu li:hover a,
+#boardDetail .open .dropdown-menu li:focus a{
+    color: #fff;
+}
+
+#boardDetail .open .dropdown-menu li:hover,
+#boardDetail .open .dropdown-menu li:focus {
+    background-color: #31b0d5;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}

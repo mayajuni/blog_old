@@ -12,7 +12,7 @@ angular.module('blog')
                 /* 메뉴가 보일때 */
                 if($('body').hasClass('show-menu')){
                     /* section과 header를 클릭하면 닫아라 */
-                    if($('#menuBox').has(e.target).length < 1 &&  $('#toggleMenuBtn').has(e.target).length < 1){
+                    if($('#menuBox').has(e.target).length < 1 &&  $('#toggleMenuBtn').has(e.target).length < 1 && $('.modal-dialog').has(e.target).length < 1){
                         $("section, .container-fluid").animate({ 'right': '0px' }, 200);
                         $("#menuBox").animate({ 'right': '-300px' }, 200);
                         $('body').removeClass('show-menu');

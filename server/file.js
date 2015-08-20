@@ -35,8 +35,13 @@ Files.allow({
             throw new Meteor.Error(409, errorM.needFile);
         }
 
-        if(FileLogs.find({_id: file._id, userId: userId}).count() < 1){
+        var fileInfo = FileLogs.findOne({_id: file._id, userId: userId});
+        if(!fileInfo){
             throw new Meteor.Error(409, errorM.notAuth);
+        }
+
+        if(fileInfo.boardId) {
+            Board.update({_id: fileInfo.boardId}, {$pull: {fileList: {_id: fileInfo._id}}});
         }
 
         FileLogs.remove({_id: file._id});
