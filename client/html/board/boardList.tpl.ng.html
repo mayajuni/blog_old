@@ -17,6 +17,6 @@
             <p class="board-meta">Posted by <a ng-href="/board/{{list.division}}">{{list.division}}</a> on {{list.regDt | date : 'MMMM dd, yyyy'}} at {{list.regDt | date : 'HH:mm:ss'}}</p>
         </div>
         <!-- Pager -->
-        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" ng-if="!boardList"></dir-pagination-controls>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" ng-if="!!boardList"></dir-pagination-controls>
     </div>
 </div>

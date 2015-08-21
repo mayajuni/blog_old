@@ -6,7 +6,7 @@ angular.module('blog')
         return {
             restrict: 'AE',
             templateUrl: 'client/html/index/header.tpl.ng.html',
-            controller: ['$rootScope', '$scope', '$meteor', function($rootScope, $scope, $meteor){
+            controller: ['$scope', '$modal', function($scope, $modal){
                 $('#mainNav').affix({
                     offset: {
                         top: 50
@@ -25,8 +25,13 @@ angular.module('blog')
                     }
                 };
 
-                $scope.showShare = function() {
-
+                $scope.openShareBox = function() {
+                    $modal({
+                        templateUrl: 'client/html/share/shareBox.tpl.ng.html',
+                        show: true,
+                        animation: 'am-fade-and-slide-top',
+                        controller: 'shareC'
+                    })
                 };
 
                 $scope.$on('isBoardDetail', function(e, isBoardDetail){
