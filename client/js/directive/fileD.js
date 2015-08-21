@@ -13,6 +13,7 @@ angular.module('blog')
             },
             templateUrl: 'client/html/file/file.tpl.ng.html',
             controller: ['$scope', '$meteor', function($scope, $meteor){
+                $scope.oldFileCount = $scope.fileList.length;
                 $scope.files = [];
                 $scope.fileList = $scope.fileList || [];
                 $scope.filesC = $meteor.collectionFS(Files, false);
@@ -49,6 +50,7 @@ angular.module('blog')
                         $scope.fileList.splice(index, 1);
                     }else if(_id){
                         $scope.filesC.remove(_id).then(function() {
+                            $scope.oldFileCount = $scope.oldFileCount -1;
                             $scope.files.splice(index, 1);
                             $scope.fileList.splice(index, 1);
                         }, function(error) {
