@@ -14,7 +14,7 @@ angular.module('utils', [])
         };
     })
     /* html을 제외한 나머지 문자열을 자르고 ... */
-    .filter('cutHtmlTagAndLimit', function(limitToFilter) {
+    .filter('cutHtmlTagAndLimit', ['limitToFilter', function(limitToFilter) {
         return function(input, limit){
             if(input){
                 var changeInput = input.replace(/(<([^>]+)>)/ig,"");
@@ -27,7 +27,7 @@ angular.module('utils', [])
 
             return input;
         };
-    })
+    }])
     /* 해당 길이 만큼 짜르고 ... */
     .filter('limitAndJjum', ['limitToFilter', function(limitToFilter){
         return function(input, limit){
