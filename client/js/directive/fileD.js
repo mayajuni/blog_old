@@ -30,7 +30,7 @@ angular.module('blog')
                 };
 
                 function uploadFile(index) {
-                    $scope.filesC.save($scope.files[index]).then(function(fileObj) {
+                    $scope.filesC.save($scope.fileList[index]).then(function(fileObj) {
                         var fileInfo = {
                             _id: fileObj[0]._id._id,
                             name: fileObj[0]._id.original.name,
