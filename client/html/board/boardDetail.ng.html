@@ -1,4 +1,4 @@
-<div  class="row">
+<div id="boardDetail" class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="board-edit-box" >
             <span ng-if="!!$root.currentUser">
@@ -36,8 +36,8 @@
                                 {{list.name}}
                             </a>
                         </div>
-                        <div ng-if="file.type.indexOf('image') > -1">
-                            <a ng-href="{{file.url}}" target="_blank">
+                        <div ng-if="list.type.indexOf('image') > -1">
+                            <a ng-href="{{list.url}}" target="_blank">
                                 {{list.name}}
                             </a>
                         </div>
