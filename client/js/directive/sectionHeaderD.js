@@ -1,5 +1,5 @@
 /**
- * Created by µ¿ÁØ on 2015-07-22.
+ * Created by ï¿½ï¿½ï¿½ï¿½ on 2015-07-22.
  */
 angular.module('blog')
     .directive('sectionHeader', function(){
@@ -8,7 +8,10 @@ angular.module('blog')
             replace: true,
             templateUrl: 'client/html/index/sectionHeader.tpl.ng.html',
             controller: ['$scope', function($scope){
+                $scope.backImg = Math.floor(Math.random() * 11);
+
                 $scope.$on('sectionHeaderChange', function(e, data){
+                    $scope.backImg = Math.floor(Math.random() * 11);
                     $scope.data = data;
                 })
             }]
