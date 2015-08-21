@@ -6,12 +6,10 @@ angular.module('blog')
         function($scope, $window, $location){
 
             $scope.facebookShare = function() {
-                $scope.share.external = 'facebook';
                 $window.open('https://www.facebook.com/sharer/sharer.php?u='+$location.absUrl());
             };
 
             $scope.googleShare = function() {
-                $scope.share.external = 'google';
                 $window.open('https://plus.google.com/share?url='+$location.absUrl());
             };
         }]);
