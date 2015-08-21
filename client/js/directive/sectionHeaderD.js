@@ -8,10 +8,9 @@ angular.module('blog')
             replace: true,
             templateUrl: 'client/html/index/sectionHeader.tpl.ng.html',
             controller: ['$scope', function($scope){
-                $scope.backImg = Math.floor(Math.random() * 11)+1;
 
                 $scope.$on('sectionHeaderChange', function(e, data){
-                    $scope.backImg = Math.floor(Math.random() * 11)+1;
+                    $scope.backImg = Math.floor(Math.random() * 9)+1;
                     $scope.data = data;
                 })
             }]
