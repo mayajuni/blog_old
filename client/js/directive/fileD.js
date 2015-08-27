@@ -1,9 +1,6 @@
 /**
  * Created by 동준 on 2015-08-13.
  */
-/**
- * Created by 동준 on 2015-07-25.
- */
 angular.module('blog')
     .directive('fileBox', function(){
         return {
@@ -13,7 +10,7 @@ angular.module('blog')
             },
             templateUrl: 'client/html/file/file.tpl.ng.html',
             controller: ['$scope', '$meteor', function($scope, $meteor){
-                $scope.oldFileCount = $scope.fileList.length;
+                $scope.oldFileCount = !!$scope.fileList ? $scope.fileList.length : 0;
                 $scope.files = [];
                 $scope.fileList = $scope.fileList || [];
                 $scope.filesC = $meteor.collectionFS(Files, false);
