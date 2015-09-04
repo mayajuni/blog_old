@@ -15,6 +15,5 @@ accounts-password
 tmeasday:publish-counts
 angularutils:pagination
 angular:angular-sanitize
-mizzao:user-status
 cfs:standard-packages
-cfs:gridfs
+cfs:filesystem

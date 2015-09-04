@@ -46,6 +46,6 @@ Files = new FS.Collection("Files", {
         maxSize: 1048576 * 10 // 10메가
     },
     stores: [
-        new FS.Store.GridFS("original")
+        new FS.Store.FileSystem("files", {path: "~/uploads"})
     ]
 });

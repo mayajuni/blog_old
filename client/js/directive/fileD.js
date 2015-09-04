@@ -15,7 +15,6 @@ angular.module('blog')
                 $scope.fileList = $scope.fileList || [];
                 $scope.filesC = $meteor.collectionFS(Files, false);
 
-
                 $scope.addFile = function(files) {
                     if (files.length > 0) {
                         for(var i=0; i<files.length; i++){
@@ -37,22 +36,25 @@ angular.module('blog')
                         };
                         $scope.fileList[index] = fileInfo;
                     }, function(error){
-                        $scope.fileList[index].error = error.message;
+                        /*$scope.fileList[index].error = error.message;*/
+                        $scope.fileList[index].error = "Max File size";
                     });
                 }
 
-                $scope.remove = function(_id, index, isError) {
-                    if(isError) {
-                        $scope.files.splice(index, 1);
-                        $scope.fileList.splice(index, 1);
-                    }else if(_id){
-                        $scope.filesC.remove(_id).then(function() {
-                            $scope.oldFileCount = $scope.oldFileCount -1;
-                            $scope.files.splice(index, 1);
-                            $scope.fileList.splice(index, 1);
-                        }, function(error) {
-                            console.log(error);
-                        });
+                $scope.remove = function(_id, index) {
+                    if(index >= $scope.oldFileCount) {
+                        $scope.files.splice(index-$scope.oldFileCount, 1);
+                    }else{
+                        $scope.oldFileCount = $scope.oldFileCount -1;
+                    }
+
+                    $scope.fileList.splice(index, 1);
+
+                    if(_id){
+                        $scope.filesC.remove(_id).then(function() {},
+                            function(error) {
+                                console.log(error);
+                            });
                     }
                 };
             }]
