@@ -46,12 +46,18 @@ angular.module('blog')
             $scope.menu = {};
             $scope.select = {};
 
-            /* 메뉴가 보드였을시 url 변경 */
-            $scope.isBoard = function() {
-                if($scope.menu.isBoard){
-                    $scope.menu.url = '/board/'+$scope.menu.name;
-                }else{
-                    $scope.menu.url = '';
+            /* 메뉴가 게시판인지 북마크인지 체크 url 변경 */
+            $scope.checkDivision = function(division) {
+                if(division == 'board'){
+                    $scope.menu.url = '/board/' + $scope.menu.name;
+                    if($scope.menu.isBoard) {
+                        $scope.menu.isBookmark = false;
+                    }
+                }else if(division == 'bookmark') {
+                    $scope.menu.url = '/bookmark/' + $scope.menu.name;
+                    if($scope.menu.isBookmark) {
+                        $scope.menu.isBoard = false;
+                    }
                 }
             };
 
@@ -72,7 +78,11 @@ angular.module('blog')
                         }
                     }
                 }
-                $scope.isBoard();
+                if($scope.menu.isBoard) {
+                    $scope.checkDivision('board');
+                }else if($scope.menu.isBookmark) {
+                    $scope.checkDivision('bookmark');
+                }
             };
 
             /* 메뉴step1이 변경되었을때 설정 */

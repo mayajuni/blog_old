@@ -1,16 +1,15 @@
 /**
- * Created by 동준 on 2015-08-19.
+ * Created by mayaj on 2015-09-07.
  */
-boardVO = function(data, todo) {
+bookmarkVO = function(data, todo) {
     var VO = {
         _id : {todo: "update, delete", validate : true},
         userId : String,
-        name : String,
         division : {validate : true},
         title : {todo: "insert, update", validate : true},
-        content : {todo: "insert, update", validate : true},
+        hashTag : {todo: "insert, update", validate : true},
+        memo : String,
         url : String,
-        fileList : Array,
         regDt : {default: new Date()}
     };
 

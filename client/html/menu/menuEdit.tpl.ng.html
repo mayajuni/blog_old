@@ -73,13 +73,16 @@
                         <div class="form-group">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="menu.isBoard" ng-click="isBoard()"> Is Board?
+                                    <input type="checkbox" ng-model="menu.isBoard" ng-click="checkDivision('board')"> Is Board?
+                                </label>
+                                <label>
+                                    <input type="checkbox" ng-model="menu.isBookmark" ng-click="checkDivision('bookmark')"> Is Bookmark?
                                 </label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="url" class="control-label">url</label>
-                            <input type="text" class="form-control" id="url" ng-model="menu.url" ng-disabled="menu.isBoard" placeholder="URL" required />
+                            <input type="text" class="form-control" id="url" ng-model="menu.url" ng-disabled="menu.isBoard || menu.isBookmark" placeholder="URL" required />
                         </div>
                     </div>
                 </div>

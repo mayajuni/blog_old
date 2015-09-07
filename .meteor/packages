@@ -17,3 +17,5 @@ angularutils:pagination
 angular:angular-sanitize
 cfs:standard-packages
 cfs:filesystem
+http
+mrt:cheerio
