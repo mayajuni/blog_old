@@ -47,6 +47,7 @@
 .menu-box-right .nav .sub-nav > li.active > a, .menu-box-right .nav .sub-nav > li > a:hover, .menu-box-right .nav .sub-nav > li > a:focus{
     color: #eee;
     font-weight: 800;
+    background-color: #6F6F6F;
 }
 
 .sidebar-header {

@@ -5,8 +5,8 @@
  * Created by 동준 on 2015-07-28.
  */
 angular.module('blog')
-    .factory('menuS', ['$meteor', '$rootScope', '$q', '$location', '$timeout',
-        function($meteor, $rootScope, $q, $location, $timeout) {
+    .factory('menuS', ['$meteor', '$rootScope', '$q', '$location', '$timeout', '$stateParams',
+        function($meteor, $rootScope, $q, $location, $timeout, $stateParams) {
             /* body 클릭 이벤트 */
             $('html').click(function(e) {
                 /* 메뉴가 보일때 */
@@ -42,7 +42,7 @@ angular.module('blog')
                  */
                 changeMenuEvent: function($scope) {
                     /* 메뉴가 변경 될때마다 이벤트 일어난다. */
-                    $rootScope.$on('$locationChangeSuccess', function() {
+                    $rootScope.$on('$stateChangeSuccess', function() {
                         /* 현재 메뉴 active */
                         service.activeMenu($scope);
                     });
@@ -56,19 +56,22 @@ angular.module('blog')
                     var sectionHeader = {};
                     if(!!$scope.menuList) {
                         for(var i=0; i<$scope.menuList.length; i++){
+                            /* 서브 메뉴가 없을경우 url이 같거나 혹은 param에 있는 division이 같을경우 같은 메뉴로 인정 */
                             if((!$scope.menuList[i].subMenuList ||$scope.menuList[i].subMenuList.length < 1)
-                                && $location.path().indexOf($scope.menuList[i].url) > -1){
-
+                                && ($location.path() == $scope.menuList[i].url || $stateParams.division == $scope.menuList[i].name)){
                                 $scope.menuList[i].active = true;
+                                /* sectionHeader title에 이름을 넣어준다/ */
                                 sectionHeader.title = $scope.menuList[i].name;
                             }else{
                                 $scope.menuList[i].active = false;
                             }
-
+                            /* 서브 메뉴가 있을시. */
                             if(!!$scope.menuList[i].subMenuList && $scope.menuList[i].subMenuList.length > 0) {
+                                /* 반복문 돌려준다/ */
                                 for (var j = 0; j < $scope.menuList[i].subMenuList.length; j++) {
                                     $scope.menuList[i].subActive = false;
-                                    if ($location.path().indexOf($scope.menuList[i].subMenuList[j].url) > -1) {
+                                    /* url이 같거나 혹은 param에 있는 division이 같을경우 같은 메뉴로 인정 */
+                                    if ($location.path() == $scope.menuList[i].subMenuList[j].url || $stateParams.division == $scope.menuList[i].subMenuList[j].name) {
                                         $scope.menuList[i].active = true;
                                         $scope.menuList[i].subMenuList[j].active = true;
 
@@ -87,13 +90,13 @@ angular.module('blog')
                                 }
                             }
                         }
+                    }
 
-                        if($location.path().indexOf('/detail/') < 0) {
-                            $scope.$emit('sectionHeaderChange', sectionHeader);
-                            $scope.$emit('isBoardDetail', false);
-                        } else {
-                            $scope.$emit('isBoardDetail', true);
-                        }
+                    if($location.path().indexOf('/detail/') < 0) {
+                        $scope.$emit('sectionHeaderChange', sectionHeader);
+                        $scope.$emit('isBoardDetail', false);
+                    } else {
+                        $scope.$emit('isBoardDetail', true);
                     }
                 },
                 /* 관리자 메뉴 */
