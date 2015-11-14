@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 urigo:angular
 twbs:bootstrap
 jquery
@@ -19,3 +18,16 @@ cfs:standard-packages
 cfs:filesystem
 http
 mrt:cheerio
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check

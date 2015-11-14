@@ -14,8 +14,9 @@ Meteor.methods({
             'twitter:image':null,
             'twitter:description':null,
             'twitter:site':null,
-            'twitter:creator':null,
-        }
+            'twitter:creator':null
+        };
+
         var meta = $('meta');
         var keys = Object.keys(meta);
         for (var s in data) {
@@ -28,6 +29,6 @@ Meteor.methods({
             })
         }
 
-        return null;
+        return data;
     }
 });
